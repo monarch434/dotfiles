@@ -118,6 +118,7 @@ packer.startup(function(use)
     -- end})
 	-- mbbill/undotree
 	-- glepnir/lspsaga.nvim
+    -- lukas-reineke/indent-blankline.nvim
 
 	-- TODO: temporary solution
 	use({
