@@ -112,6 +112,7 @@ packer.startup(function(use)
 	-- SmiteshP/nvim-navic
 	-- folke/which-key.nvim
 	-- https://github.com/arkav/lualine-lsp-progress
+    -- kevinhwang91/nvim-bqf
 
     -- use ({"akinsho/bufferline.nvim", config = function ()
     --     require("bufferline").setup()

@@ -63,5 +63,9 @@ keymap("n", "<C-u>", "<C-u>zz", opts)
 -- Cancel search highlighting with ESC
 keymap("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", opts)
 
+-- Telescope
+keymap("n", "<leader>ff", "<cmd> Telescope find_files<CR>", opts)
+keymap("n", "<leader>fg", "<cmd> Telescope live_grep<CR>", opts)
+keymap("n", "<leader>fb", "<cmd> Telescope buffers<CR>", opts)
+keymap("n", "<leader>fh", "<cmd> Telescope help_tags<CR>", opts)
 
-keymap("n", "<leader>ff", ":lua require('telescope.builtin').find_files({hidden=true})<CR>", opts)
