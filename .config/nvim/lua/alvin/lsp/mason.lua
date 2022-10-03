@@ -69,5 +69,15 @@ mason_lspconfig.setup_handlers({
 			opts = vim.tbl_deep_extend("force", server, opts)
 		end
 		lspconfig[server_name].setup(opts)
+        if (server_name == "jsonls") then
+            vim.api.nvim_create_augroup("jsonIndent", {clear = true})
+            vim.api.nvim_create_autocmd("BufEnter", {
+                group = "jsonIndent",
+                pattern = {"*.json"},
+                callback = function ()
+                    vim.opt.tabstop = 2
+                    vim.opt.shiftwidth = 2
+                end})
+        end
 	end,
 })
