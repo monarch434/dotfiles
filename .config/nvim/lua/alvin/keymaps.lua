@@ -1,6 +1,6 @@
 local opts = { noremap = true, silent = true }
 
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 -- Modes
 --   normal_mode = "n",
@@ -28,6 +28,10 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Set explore
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+
+-- move based on physical line. Helps with wrapped text
+keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
 -- Resize with arrows
 keymap("n", "<Up>", ":resize +2<CR>", opts)

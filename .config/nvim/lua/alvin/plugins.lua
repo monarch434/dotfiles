@@ -46,7 +46,7 @@ packer.init({
 
 --  TODO: properly sort out plugins with keybindings, config, etc.
 packer.startup(function(use)
-	use({ "wbthomason/packer.nvim" }) -- packer can manage itself
+	use("wbthomason/packer.nvim") -- packer can manage itself
 	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
 
@@ -86,14 +86,6 @@ packer.startup(function(use)
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use({ "windwp/nvim-autopairs" })
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-
-	use({
-		"goolord/alpha-nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
-		config = function()
-			require("alpha").setup(require("alpha.themes.dashboard").config)
-		end,
-	})
 
 	use({ "lewis6991/gitsigns.nvim" })
 

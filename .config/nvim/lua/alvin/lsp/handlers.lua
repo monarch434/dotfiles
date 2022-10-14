@@ -56,7 +56,7 @@ local function lsp_keymaps(bufnr)
     keymap("n", "K", vim.lsp.buf.hover, opts)
     keymap("n", "gi", vim.lsp.buf.implementation, opts)
     keymap("n", "rn", vim.lsp.buf.rename, opts)
-    keymap("n", "<leader>f", vim.lsp.buf.formatting_sync, opts)
+    keymap("n", "<leader>f", vim.lsp.buf.format, opts)
     keymap("n", "gr", vim.lsp.buf.references, opts)
     -- keymap('n', '<leader>gw', vim.diagnostic.setloclis, opts)
     -- keymap('n', '<leader>ggw', vim.diagnostic.setqflist, opts)
@@ -75,8 +75,8 @@ local function lsp_word_highlight(client)
 end
 
 M.on_attach = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
     lsp_keymaps(bufnr)
     lsp_word_highlight(client)
 end

@@ -40,12 +40,12 @@ local options = {
 	updatetime = 50, -- used for cursorhold autocommand event
 }
 
+-- Disable netrw
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.opt.shortmess:append("c")
-vim.cmd("set whichwrap+=<,>,[,],h,l")
-vim.cmd([[set iskeyword+=-]])
+-- wrap to next line
+vim.opt.whichwrap:append("<,>,[,]")
 
 for k, v in pairs(options) do
 	vim.opt[k] = v
