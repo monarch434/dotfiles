@@ -30,19 +30,6 @@ local lsp_servers = {
     "bashls",
     "golangci_lint_ls",
     "vimls",
-
-    -- Linters --
-    "markdownlint",
-    "golangci_lint",
-    "shellcheck",
-    "staticcheck",
-    "yamllint",
-
-    -- formmatters --
-    "gofumpt",
-    "goimports",
-    "jq",
-    "stylua",
 }
 
 mason.setup({
