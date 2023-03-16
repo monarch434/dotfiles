@@ -23,6 +23,7 @@ local options = {
 	splitright = true, -- force all vertical splits to go to the right of current window
 	splitbelow = true, -- force all horizontal splits to go below current window
 	timeoutlen = 500, -- time to wait for a mapped sequence to complete (in milliseconds)
+    timeout = true, --wheathe vim should wait for a follow up key on not (used for keymaps)
 	-- clipboard = "unnamedplus",      			-- allows neovim to access the system clipboard
 	laststatus = 2, -- always display the status bar
 	confirm = true, -- display confirmation dialog when closing an unsaved file
@@ -41,8 +42,8 @@ local options = {
 }
 
 -- Disable netrw
-vim.g.loaded = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded = 1
+-- vim.g.loaded_netrwPlugin = 1
 
 -- wrap to next line
 vim.opt.whichwrap:append("<,>,[,]")

@@ -11,18 +11,19 @@ end
 -- end
 
 -- TODO view.mappings is being deprecated, change to use on_attach
-nvim_tree.setup {
-    -- on_attatch = function (bufnr)
-    --     vim.keymap.set('n', "u", ":vsplit<cr>", {buffer = bufnr, normap = true} )
-    -- end
+nvim_tree.setup({
+    on_attatch = function(bufnr)
+        --     vim.keymap.set('n', "u", ":vsplit<cr>", {buffer = bufnr, normap = true} )
+    end,
+    disable_netrw = true,
     view = {
         mappings = {
             list = {
                 { key = "v", action = "vsplit" },
-                { key = "u", action =  "dir_up"},
+                { key = "u", action = "dir_up" },
                 { key = "l", action = "edit" },
                 { key = "h", action = "close_node" },
             },
         },
-    }
-}
+    },
+})

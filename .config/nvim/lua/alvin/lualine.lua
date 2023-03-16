@@ -246,7 +246,7 @@ lualine.setup({
     },
     sections = {
         lualine_a = {},
-        lualine_b = {},
+        lualine_b = {lsp},
         lualine_c = { mode, diagnostics, "%=", branch, "/", filename },
         lualine_x = { diff, filetype, spaces, filesize, percent, progress },
         lualine_y = {},

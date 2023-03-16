@@ -54,22 +54,16 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Move text up and down
---keymap("v", "J", ":m .+1<CR>==", opts)
---keymap("v", "K", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
+-- Move selected lines up/down
 keymap("v", "J", ":m '>+1<CR>gv-gv", opts)
 keymap("v", "K", ":m '<-2<CR>gv-gv", opts)
 
+-- Move half screen up/down
 keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
 
 -- Cancel search highlighting with ESC
 keymap("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", opts)
-
--- Telescope
-keymap("n", "<leader>ff", "<cmd> Telescope find_files<CR>", opts)
-keymap("n", "<leader>fg", "<cmd> Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fb", "<cmd> Telescope buffers<CR>", opts)
-keymap("n", "<leader>fh", "<cmd> Telescope help_tags<CR>", opts)
 

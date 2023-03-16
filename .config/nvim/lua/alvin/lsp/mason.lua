@@ -24,12 +24,13 @@ end
 local lsp_servers = {
     -- language servers --
     "gopls",
-    "sumneko_lua",
+    "lua_ls",
     "jsonls",
     "yamlls",
     "bashls",
-    "golangci_lint_ls",
     "vimls",
+    -- formatters --
+    "golangci_lint_ls",
 }
 
 mason.setup({

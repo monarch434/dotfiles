@@ -1,9 +1,9 @@
 #!/bin/sh
 
 create_symlinks() {
-    ln -sf ~/.dotfiles/.config/bat/ ~/.config/
-    ln -sf ~/.dotfiles/.config/nvim/ ~/.config/
-    ln -sf ~/.dotfiles/.config/spaceship-prompt/ ~/.config/
+    ln -sf ${PWD}/.config/starship.toml ~/.config/
+    ln -sf ${PWD}/.config/bat/ ~/.config/
+    ln -sf ${PWD}/.config/nvim/ ~/.config/
 } 
 
 create_symlinks
