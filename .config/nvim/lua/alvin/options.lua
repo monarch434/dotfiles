@@ -29,7 +29,7 @@ local options = {
 	confirm = true, -- display confirmation dialog when closing an unsaved file
 	history = 1000, -- increase the undo limit
 	swapfile = false, -- disable swap files
-	cmdheight = 1, -- more space in the neovim command line for displaying messages
+	cmdheight = 0, -- more space in the neovim command line for displaying messages
 	completeopt = { "menu", "menuone", "noselect" }, -- mostly just for cmp
 	conceallevel = 0, -- so that `` is visible in markdown files
 	pumheight = 10, -- pop up menu height
@@ -38,12 +38,23 @@ local options = {
 	guifont = "monospace:h17", -- set font for graphical nvim applications
 	-- TODO find a nice way to display spell checking
 	spell = false, -- enable spellcheking
-	updatetime = 50, -- used for cursorhold autocommand event
+	updatetime =  50, -- used for cursorhold autocommand event
+    linespace=20
 }
 
 -- Disable netrw
 -- vim.g.loaded = 1
 -- vim.g.loaded_netrwPlugin = 1
+
+-- undo tree layout options (1, 2, 3, 4)
+vim.g.undotree_WindowLayout = 2
+
+-- vim go options
+vim.g.go_highlight_function_calls = 1
+vim.g.go_highlight_types = 1
+vim.g.go_highlight_fields = 1
+vim.g.go_highlight_functions = 1
+vim.g.go_highlight_operators = 1
 
 -- wrap to next line
 vim.opt.whichwrap:append("<,>,[,]")

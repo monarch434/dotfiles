@@ -4,26 +4,24 @@ if not ok then
     return
 end
 
--- local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
--- if not config_status_ok then
---     print("unable to load nvim-tree.config")
---   return
--- end
+local on_attach = function(bufnr)
+    local keymap = vim.keymap.set
+    local api = require("nvim-tree.api")
+      local function opts(desc)
+    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
 
--- TODO view.mappings is being deprecated, change to use on_attach
+    api.config.mappings.default_on_attach(bufnr)
+
+
+    keymap("n", "v", api.node.open.vertical, opts("Vsplit"))
+    keymap("n", "l", api.node.open.edit, opts("Open"))
+end
+
 nvim_tree.setup({
-    on_attatch = function(bufnr)
-        --     vim.keymap.set('n', "u", ":vsplit<cr>", {buffer = bufnr, normap = true} )
-    end,
+    on_attach = on_attach,
     disable_netrw = true,
-    view = {
-        mappings = {
-            list = {
-                { key = "v", action = "vsplit" },
-                { key = "u", action = "dir_up" },
-                { key = "l", action = "edit" },
-                { key = "h", action = "close_node" },
-            },
-        },
-    },
+      modified = {
+        enable = true,
+    }
 })

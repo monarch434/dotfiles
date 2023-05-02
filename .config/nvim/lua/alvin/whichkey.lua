@@ -33,10 +33,23 @@ local n_opts = {
     nowait = true, -- use `nowait` when creating keymaps
 }
 
+-- TODO:Move this to telescopde-config.lua
+local function project_files()
+  local opts = {} -- define here if you want to define something
+
+  vim.fn.system('git rev-parse --is-inside-work-tree')
+  if vim.v.shell_error == 0 then
+    require"telescope.builtin".git_files(opts)
+  else
+    require"telescope.builtin".find_files(opts)
+  end
+end
+
+
 local n_mappings = {
     f = {
         name = "Telescope",
-        f = { "<cmd> Telescope find_files<CR>", "Find files" },
+        f = { project_files, "Find files" },
         g = { "<cmd> Telescope live_grep<CR>", "Live grep" },
         b = { "<cmd> Telescope buffers<CR>", "List buffers" },
         h = { "<cmd> Telescope help_tags<CR>", "Help" },
@@ -45,9 +58,11 @@ local n_mappings = {
     h = {
         name = "Gitsigns",
         s = { "<cmd> Gitsigns preview_hunk<CR>", "Preview Hunk" },
-        n = { "<cmd> Gitsigns next_hunck<CR>", "Next Hunk" },
-        p = { "<cmd> Gitsigns preview_hunk", "Previous Hunk" },
+        n = { "<cmd> Gitsigns next_hunk<CR>", "Next Hunk" },
+        p = { "<cmd> Gitsigns prev_hunk<CR>", "Previous Hunk" },
         b = { "<cmd> Gitsigns toggle_current_line_blame<CR>", "Current line blame" },
+        S = { "<cmd> Gitsigns stage_buffer<CR>", "Stage current file" },
+        U = { "<cmd> Gitsigns reset_buffer_index<CR>", "Unstage current file" },
     },
 }
 

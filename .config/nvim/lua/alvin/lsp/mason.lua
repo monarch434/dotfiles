@@ -29,8 +29,8 @@ local lsp_servers = {
     "yamlls",
     "bashls",
     "vimls",
-    -- formatters --
-    "golangci_lint_ls",
+    "tsserver",
+    -- "golangci_lint_ls",
 }
 
 mason.setup({

@@ -78,7 +78,7 @@ packer.startup(function(use)
     use("neovim/nvim-lspconfig") -- LSP
     use("RRethy/vim-illuminate")
     use("jose-elias-alvarez/null-ls.nvim")
-    use("jay-babu/mason-null-ls.nvim") -- Is this really needed??
+    use("jay-babu/mason-null-ls.nvim")
 
     use("b0o/schemastore.nvim")
 
@@ -89,18 +89,38 @@ packer.startup(function(use)
 
     use({ "lewis6991/gitsigns.nvim" })
 
+    use("numToStr/Comment.nvim")
+    use("JoosepAlviste/nvim-ts-context-commentstring")
+
     use({
         "lewis6991/impatient.nvim",
         run = function()
             require("impatient").enable_profile()
         end,
     })
-    use("JoosepAlviste/nvim-ts-context-commentstring")
+
+    use({
+        "smjonas/inc-rename.nvim",
+        config = function()
+            require("inc_rename").setup()
+        end,
+    })
     use({ "danymat/neogen", requires = "nvim-treesitter/nvim-treesitter" }) -- multilanguage annotations
     use("folke/todo-comments.nvim") -- todo comments
 
     use({ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } })
     use({ "folke/which-key.nvim" }) -- folke/trouble.nvim
+
+    use({"christoomey/vim-tmux-navigator"})
+
+    -- TODO: fix terraform and hcl formatting 
+    use({"hashivim/vim-terraform"})
+
+
+    -- TODO: configure properly
+    use({"fatih/vim-go"})
+
+    use({"mbbill/undotree"})
     -- SmiteshP/nvim-navic
     -- https://github.com/arkav/lualine-lsp-progress
     -- kevinhwang91/nvim-bqf
@@ -108,17 +128,9 @@ packer.startup(function(use)
     -- use ({"akinsho/bufferline.nvim", config = function ()
     --     require("bufferline").setup()
     -- end})
-    -- mbbill/undotree
     -- glepnir/lspsaga.nvim
-    -- lukas-reineke/indent-blankline.nvim
+    use("lukas-reineke/indent-blankline.nvim")
 
-    -- TODO: temporary solution
-    use({
-        "numToStr/Comment.nvim",
-        config = function()
-            require("Comment").setup()
-        end,
-    })
     -- Automatically setup packer.nvim
     if PACKER_BOOTSTRAP then
         require("packer").sync()

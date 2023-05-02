@@ -1,5 +1,10 @@
 local M = {}
-local keymap = vim.keymap.set
+
+local status_ok, wk = pcall(require, "which-key")
+if not status_ok then
+    print("unable to load which-key")
+    return
+end
 
 M.setup = function()
     local signs = {
@@ -45,20 +50,35 @@ M.setup = function()
 end
 
 local function lsp_keymaps(bufnr)
-    local opts = { buffer = bufnr, noremap = true, silent = true }
+    local n_opts = {
+        mode = "n", -- NORMAL mode
+        prefix = "<leader>",
+        buffer = bufnr, -- Global mappings. Specify a buffer number for buffer local mappings
+        silent = true, -- use `silent` when creating keymaps
+        noremap = true, -- use `noremap` when creating keymaps
+        nowait = true, -- use `nowait` when creating keymaps
+    }
 
-    keymap("n", "gD", vim.lsp.buf.declaration, opts)
-    keymap("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-    keymap("n", "gd", vim.lsp.buf.definition, opts)
-    keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-    keymap("n", "]d", vim.diagnostic.goto_next, opts)
-    keymap("n", "[d", vim.diagnostic.goto_prev, opts)
-    keymap("n", "K", vim.lsp.buf.hover, opts)
-    keymap("n", "gi", vim.lsp.buf.implementation, opts)
-    keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
-    keymap("n", "<leader>f", vim.lsp.buf.format, opts)
-    keymap("n", "gr", vim.lsp.buf.references, opts)
-    -- keymap('n', '<leader>gw', vim.diagnostic.setloclis, opts)
+    local n_mappings = {
+        l = {
+            name = "LSP",
+            f = { ":lua vim.lsp.buf.format()<cr>", "Format file" },
+            D = { ":lua vim.lsp.buf.declaration()<cr>", "Goto Declaration" },
+            i = { ":lua vim.lsp.buf.implementation()<cr>", "Goto implementation" },
+            d = { ":lua vim.lsp.buf.definition()<cr>", "Goto definition" },
+            r = { ":Telescope lsp_references<cr>", "List references" },
+            t = { ":Telescope lsp_type_definitions<cr>", "Goto type definition" },
+            a = { ":lua vim.lsp.buf.code_action()<cr>", "Code action", mode = { "n", "v" } },
+            n = { ":lua vim.diagnostic.goto_next()<cr>", "Next diagnostic" },
+            p = { ":lua vim.diagnostic.goto_prev()<cr>", "Previous diagnostic" },
+            R = { ":IncRename ", "Rename" },
+        },
+        k = { ":lua vim.lsp.buf.hover()<cr>", "Hover" },
+    }
+
+    wk.register(n_mappings, n_opts)
+
+    -- keymap('n', '<leader>gw', vim.diagnostic.setloclist, opts)
     -- keymap('n', '<leader>ggw', vim.diagnostic.setqflist, opts)
     -- keymap("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
     -- keymap("n", "gp", "<cmd>Lspsaga peek_definition<CR>", opts)
@@ -66,8 +86,8 @@ local function lsp_keymaps(bufnr)
 end
 
 local function lsp_word_highlight(client)
-    local status_ok, illuminate = pcall(require, "illuminate")
-    if not status_ok then
+    local illuminate_status_ok, illuminate = pcall(require, "illuminate")
+    if not illuminate_status_ok then
         return
     end
 
@@ -83,8 +103,8 @@ end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
+local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not cmp_nvim_lsp_status_ok then
     print("failed to load cmp_nvim_lsp")
     return
 end

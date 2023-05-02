@@ -17,15 +17,17 @@ local completion = nls.builtins.completion
 nls.setup({
     sources = {
         formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "4" } }),
-        diagnostics.eslint,
+        diagnostics.eslint_d,
+        formatting.prettierd.with({ extra_args = { "--no-semi" } }),
         completion.spell,
         diagnostics.golangci_lint.with({ extra_args = { "run" } }),
         formatting.goimports,
         formatting.gofumpt,
+        formatting.terraform_fmt
     },
 })
 
-mason_null_ls.setup({automatic_installation = true})
+mason_null_ls.setup({ automatic_installation = true })
 
 local M = {}
 

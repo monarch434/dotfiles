@@ -1,4 +1,5 @@
 local opts = { noremap = true, silent = true }
+local opts_expr = { noremap = true, silent = true, expr = true }
 
 local keymap = vim.keymap.set
 
@@ -30,8 +31,8 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 
 -- move based on physical line. Helps with wrapped text
-keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
-keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
+keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", opts_expr)
+keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", opts_expr)
 
 -- Resize with arrows
 keymap("n", "<Up>", ":resize +2<CR>", opts)
@@ -67,3 +68,12 @@ keymap("n", "<C-u>", "<C-u>zz", opts)
 -- Cancel search highlighting with ESC
 keymap("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", opts)
 
+-- Toggle undo tree plugin
+keymap("n", "<C-b>", vim.cmd.UndotreeToggle, opts)
+
+-- yank to clipboard
+keymap("v", "<C-y>", '"+y', opts)
+keymap("v", "<C-y>y", '"+yy', opts)
+
+-- paste from clipboard
+keymap({"n", "v"}, "<C-p>", '"+p', opts)
