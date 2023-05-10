@@ -23,7 +23,7 @@ nls.setup({
         diagnostics.golangci_lint.with({ extra_args = { "run" } }),
         formatting.goimports,
         formatting.gofumpt,
-        formatting.terraform_fmt
+        formatting.terraform_fmt,
     },
 })
 

@@ -5,6 +5,7 @@ create_symlinks() {
     ln -sf ${PWD}/.config/bat/ ~/.config/
     ln -sf ${PWD}/.config/nvim/ ~/.config/
     ln -sf ${PWD}/.config/tmux/ ~/.config/
+    ln -sf ${PWD}/.config/kitty/ ~/.config/
 } 
 
 create_symlinks

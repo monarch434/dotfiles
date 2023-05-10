@@ -99,31 +99,41 @@ packer.startup(function(use)
         end,
     })
 
+    --NOTE possible git tools
+    --- https://github.com/sindrets/diffview.nvim
+    --- https://github.com/TimUntersberger/neogit
+    --- https://github.com/kdheepak/lazygit.nvim
+    --- https://github.com/tpope/vim-fugitive
+
     use({
         "smjonas/inc-rename.nvim",
         config = function()
             require("inc_rename").setup()
         end,
     })
-    use({ "danymat/neogen", requires = "nvim-treesitter/nvim-treesitter" }) -- multilanguage annotations
+
+    -- NOTE why do I even have you you here
+    -- use({ "danymat/neogen", requires = "nvim-treesitter/nvim-treesitter" }) -- multilanguage annotations
     use("folke/todo-comments.nvim") -- todo comments
 
     use({ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } })
     use({ "folke/which-key.nvim" }) -- folke/trouble.nvim
 
-    use({"christoomey/vim-tmux-navigator"})
+    use({ "christoomey/vim-tmux-navigator" })
 
-    -- TODO: fix terraform and hcl formatting 
-    use({"hashivim/vim-terraform"})
-
+    -- TODO: fix terraform and hcl formatting
+    use({ "hashivim/vim-terraform" })
 
     -- TODO: configure properly
-    use({"fatih/vim-go"})
+    use({ "fatih/vim-go" })
 
-    use({"mbbill/undotree"})
+    use({ "mbbill/undotree" })
+
+    use("tpope/vim-surround")
     -- SmiteshP/nvim-navic
     -- https://github.com/arkav/lualine-lsp-progress
     -- kevinhwang91/nvim-bqf
+    -- https://github.com/ggandor/leap.nvim
 
     -- use ({"akinsho/bufferline.nvim", config = function ()
     --     require("bufferline").setup()

@@ -1,7 +1,9 @@
 return {
     settings = {
         yaml = {
-            keyOrdering = false
+            schemas = require("schemastore").yaml.schemas(),
+            keyOrdering = false,
+            completion = true,
         },
     },
 }

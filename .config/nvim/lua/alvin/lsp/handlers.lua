@@ -72,8 +72,8 @@ local function lsp_keymaps(bufnr)
             n = { ":lua vim.diagnostic.goto_next()<cr>", "Next diagnostic" },
             p = { ":lua vim.diagnostic.goto_prev()<cr>", "Previous diagnostic" },
             R = { ":IncRename ", "Rename" },
+            k = { ":lua vim.lsp.buf.hover()<cr>", "Hover" },
         },
-        k = { ":lua vim.lsp.buf.hover()<cr>", "Hover" },
     }
 
     wk.register(n_mappings, n_opts)
@@ -94,10 +94,20 @@ local function lsp_word_highlight(client)
     illuminate.on_attach(client)
 end
 
+local function format_on_save(bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        callback = function()
+            vim.lsp.buf.format()
+        end,
+    })
+end
+
 M.on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
     lsp_keymaps(bufnr)
+    format_on_save(bufnr)
     lsp_word_highlight(client)
 end
 

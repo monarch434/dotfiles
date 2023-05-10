@@ -7,12 +7,11 @@ end
 local on_attach = function(bufnr)
     local keymap = vim.keymap.set
     local api = require("nvim-tree.api")
-      local function opts(desc)
-    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-  end
+    local function opts(desc)
+        return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    end
 
     api.config.mappings.default_on_attach(bufnr)
-
 
     keymap("n", "v", api.node.open.vertical, opts("Vsplit"))
     keymap("n", "l", api.node.open.edit, opts("Open"))
@@ -21,7 +20,12 @@ end
 nvim_tree.setup({
     on_attach = on_attach,
     disable_netrw = true,
-      modified = {
+    actions = {
+        open_file = {
+            quit_on_open = true,
+        },
+    },
+    modified = {
         enable = true,
-    }
+    },
 })
