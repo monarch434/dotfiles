@@ -30,6 +30,7 @@ local lsp_servers = {
     "bashls",
     "vimls",
     "tsserver",
+    "jdtls",
     -- "golangci_lint_ls",
 }
 

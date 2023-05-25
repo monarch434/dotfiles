@@ -4,7 +4,7 @@ if not ok then
     return
 end
 
-treesitter.setup {
+treesitter.setup({
     ensure_installed = "all",
     incremental_selection = {
         enable = true,
@@ -16,11 +16,11 @@ treesitter.setup {
         },
     },
     autopairs = {
-        enable = true
+        enable = true,
     },
     ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
     highlight = {
-        enable = true,
+        enable = false,
         disable = { "" }, -- list of language that will be disabled
         additional_vim_regex_highlighting = true,
     },
@@ -31,5 +31,5 @@ treesitter.setup {
     context_commentstring = {
         enable = true,
         enable_autocmd = true,
-    }
-}
+    },
+})

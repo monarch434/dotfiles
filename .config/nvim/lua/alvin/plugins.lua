@@ -80,6 +80,9 @@ packer.startup(function(use)
     use("jose-elias-alvarez/null-ls.nvim")
     use("jay-babu/mason-null-ls.nvim")
 
+    -- debugger
+    use("sebdah/vim-delve")
+
     use("b0o/schemastore.nvim")
 
     use({ "nvim-telescope/telescope.nvim", tag = "0.1.0" })
@@ -99,6 +102,8 @@ packer.startup(function(use)
         end,
     })
 
+    use({ "mfussenegger/nvim-jdtls" })
+
     --NOTE possible git tools
     --- https://github.com/sindrets/diffview.nvim
     --- https://github.com/TimUntersberger/neogit
@@ -114,7 +119,9 @@ packer.startup(function(use)
 
     -- NOTE why do I even have you you here
     -- use({ "danymat/neogen", requires = "nvim-treesitter/nvim-treesitter" }) -- multilanguage annotations
-    use("folke/todo-comments.nvim") -- todo comments
+
+    -- TODO: fix colors
+    use("folke/todo-comments.nvim")
 
     use({ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } })
     use({ "folke/which-key.nvim" }) -- folke/trouble.nvim
@@ -124,12 +131,13 @@ packer.startup(function(use)
     -- TODO: fix terraform and hcl formatting
     use({ "hashivim/vim-terraform" })
 
-    -- TODO: configure properly
-    use({ "fatih/vim-go" })
+    -- TODO: find a reason to use this instead of a normal LSP???
+    -- use({ "fatih/vim-go" })
 
     use({ "mbbill/undotree" })
 
     use("tpope/vim-surround")
+    use("tpope/vim-obsession")
     -- SmiteshP/nvim-navic
     -- https://github.com/arkav/lualine-lsp-progress
     -- kevinhwang91/nvim-bqf
