@@ -34,7 +34,6 @@ local config = {
         "-Dlog.protocol=true",
         "-Dlog.level=ALL",
         "-Xmx1g",
-        -- "-javaagent:/path/to/lombok.jar",
         "--add-modules=ALL-SYSTEM",
         "--add-opens",
         "java.base/java.util=ALL-UNNAMED",
@@ -47,10 +46,10 @@ local config = {
         "-data",
         workspace_dir,
     },
-    on_attach = function(client, bufnr)
-        -- require("alvin/lsp/handlers").on_attach(client, bufnr)
-        jdtls.setup.add_commands()
-    end,
+    -- on_attach = function(client, bufnr)
+    --     -- require("alvin/lsp/handlers").on_attach(client, bufnr)
+    --     jdtls.setup.add_commands()
+    -- end,
     capabilities = require("alvin/lsp/handlers").capabilities,
     root_dir = jdtls.setup.find_root(root_markers),
 
@@ -59,11 +58,26 @@ local config = {
     -- for a list of options
     settings = {
         java = {
+            home = "~/.sdkman/candidates/java/current/",
             eclipse = {
                 downloadSources = true,
             },
             configuration = {
                 updateBuildConfiguration = "interactive",
+                runtimes = {
+                    {
+                        name = "JavaSE-17",
+                        path = "/home/alvin/.sdkman/candidates/java/17.0.5-zulu",
+                    },
+                    {
+                        name = "JavaSE-1.8",
+                        path = "/home/alvin/.sdkman/candidates/java/8.0.372-zulu",
+                    },
+                    {
+                        name = "JavaSE-1.7",
+                        path = "/home/alvin/.sdkman/candidates/java/7.0.352-zulu",
+                    },
+                },
             },
             maven = {
                 downloadSources = true,
@@ -96,6 +110,12 @@ local config = {
                 "java.util.Objects.requireNonNullElse",
                 "org.mockito.Mockito.*",
             },
+            importOrder = {
+                "java",
+                "javax",
+                "com",
+                "org",
+            },
         },
         contentProvider = { preferred = "fernflower" },
         extendedClientCapabilities = extendedClientCapabilities,
@@ -127,5 +147,18 @@ local config = {
         bundles = {},
     },
 }
+
+config["on_attach"] = function(client, bufnr)
+    require("alvin/lsp/handlers").on_attach(client, bufnr)
+    jdtls.setup.add_commands()
+    require("lsp_signature").on_attach({
+        bind = true, -- This is mandatory, otherwise border config won't get registered.
+        floating_window_above_cur_line = false,
+        padding = "",
+        handler_opts = {
+            border = "rounded",
+        },
+    }, bufnr)
+end
 
 jdtls.start_or_attach(config)

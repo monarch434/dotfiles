@@ -126,6 +126,8 @@ packer.startup(function(use)
     use({ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } })
     use({ "folke/which-key.nvim" }) -- folke/trouble.nvim
 
+    use({ "folke/trouble.nvim", requires = { "nvim-tree/nvim-web-devicons" } })
+
     use({ "christoomey/vim-tmux-navigator" })
 
     -- TODO: fix terraform and hcl formatting

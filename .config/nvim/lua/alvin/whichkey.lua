@@ -35,16 +35,15 @@ local n_opts = {
 
 -- TODO:Move this to telescopde-config.lua
 local function project_files()
-  local opts = {} -- define here if you want to define something
+    local opts = {} -- define here if you want to define something
 
-  vim.fn.system('git rev-parse --is-inside-work-tree')
-  if vim.v.shell_error == 0 then
-    require"telescope.builtin".git_files(opts)
-  else
-    require"telescope.builtin".find_files(opts)
-  end
+    vim.fn.system("git rev-parse --is-inside-work-tree")
+    if vim.v.shell_error == 0 then
+        require("telescope.builtin").git_files(opts)
+    else
+        require("telescope.builtin").find_files(opts)
+    end
 end
-
 
 local n_mappings = {
     f = {
@@ -63,6 +62,13 @@ local n_mappings = {
         b = { "<cmd> Gitsigns toggle_current_line_blame<CR>", "Current line blame" },
         S = { "<cmd> Gitsigns stage_buffer<CR>", "Stage current file" },
         U = { "<cmd> Gitsigns reset_buffer_index<CR>", "Unstage current file" },
+    },
+    t = {
+        name = "Trouble",
+        t = { "<cmd>TroubleToggle<CR>", "Toggle Trouble" },
+        w = { "<cmd>TroubleToggle workspace_diagnostics<CR>", "Trouble Workespace" },
+        d = { "<cmd>TroubleToggle document_diagnostics<CR>", "Trouble Workespace" },
+        r = { "<cmd>TroubleToggle lsp_references<CR>", "Trouble Lsp_references" },
     },
 }
 
