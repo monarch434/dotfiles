@@ -109,6 +109,7 @@ packer.startup(function(use)
     --- https://github.com/TimUntersberger/neogit
     --- https://github.com/kdheepak/lazygit.nvim
     --- https://github.com/tpope/vim-fugitive
+    use({ "tpope/vim-fugitive" })
 
     use({
         "smjonas/inc-rename.nvim",
@@ -124,7 +125,7 @@ packer.startup(function(use)
     use("folke/todo-comments.nvim")
 
     use({ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } })
-    use({ "folke/which-key.nvim" }) -- folke/trouble.nvim
+    use({ "folke/which-key.nvim" })
 
     use({ "folke/trouble.nvim", requires = { "nvim-tree/nvim-web-devicons" } })
 
@@ -139,6 +140,8 @@ packer.startup(function(use)
     use({ "mbbill/undotree" })
 
     use("tpope/vim-surround")
+
+    -- used for tmux-resurrect to restore saved sessions
     use("tpope/vim-obsession")
     -- SmiteshP/nvim-navic
     -- https://github.com/arkav/lualine-lsp-progress
