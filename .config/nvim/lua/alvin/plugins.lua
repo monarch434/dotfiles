@@ -121,8 +121,7 @@ packer.startup(function(use)
     -- NOTE why do I even have you you here
     -- use({ "danymat/neogen", requires = "nvim-treesitter/nvim-treesitter" }) -- multilanguage annotations
 
-    -- TODO: fix colors
-    use("folke/todo-comments.nvim")
+    use({ "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } })
 
     use({ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } })
     use({ "folke/which-key.nvim" })

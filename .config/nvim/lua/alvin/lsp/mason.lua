@@ -31,7 +31,6 @@ local lsp_servers = {
     "vimls",
     "tsserver",
     "jdtls",
-    -- "golangci_lint_ls",
 }
 
 mason.setup({

@@ -17,14 +17,22 @@ local actions = nls.builtins.code_actions
 
 nls.setup({
     sources = {
+        -- formatting
         formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "4" } }),
-        diagnostics.eslint_d,
         formatting.prettierd.with({ extra_args = { "--no-semi" } }),
-        completion.spell,
-        diagnostics.golangci_lint,
         formatting.goimports,
         formatting.gofumpt,
         formatting.terraform_fmt,
+        formatting.google_java_format,
+
+        -- diagnostics
+        diagnostics.eslint_d,
+        diagnostics.golangci_lint,
+
+        -- completions
+        completion.spell,
+
+        -- actions
         actions.gitsigns,
     },
 })

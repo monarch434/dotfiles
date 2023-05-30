@@ -40,7 +40,7 @@ local options = {
     spell = false, -- enable spellcheking
     updatetime = 50, -- used for cursorhold autocommand event
     linespace = 20,
-    autowriteall = true,
+    autowriteall = false,
 }
 
 -- Disable netrw
