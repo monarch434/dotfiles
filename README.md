@@ -8,4 +8,4 @@
 ## Source tmux config
 
 1. start a tmux session
-2. <C-b> I
+2. "<C-b>" I
