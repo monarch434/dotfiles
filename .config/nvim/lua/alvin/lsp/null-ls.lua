@@ -24,6 +24,7 @@ nls.setup({
         formatting.gofumpt,
         formatting.terraform_fmt,
         formatting.google_java_format,
+        formatting.clang_format,
 
         -- diagnostics
         diagnostics.eslint_d,
@@ -35,6 +36,11 @@ nls.setup({
         -- actions
         actions.gitsigns,
     },
+    -- used to keep clangd and clang_format happy
+    -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
+    on_init = function(client, _)
+        client.capabilities.offsetEncodinga = { "utf-16" }
+    end,
 })
 
 mason_null_ls.setup({ automatic_installation = true })

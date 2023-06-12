@@ -31,6 +31,7 @@ local lsp_servers = {
     "vimls",
     "tsserver",
     "jdtls",
+    "clangd",
 }
 
 mason.setup({

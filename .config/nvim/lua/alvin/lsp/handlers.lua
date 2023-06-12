@@ -107,6 +107,7 @@ M.on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
     lsp_keymaps(bufnr)
+    -- it's nice, but annoying
     format_on_save(bufnr)
     lsp_word_highlight(client)
 end
