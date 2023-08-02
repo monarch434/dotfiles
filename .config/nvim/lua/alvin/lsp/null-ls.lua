@@ -13,13 +13,13 @@ end
 local formatting = nls.builtins.formatting
 local diagnostics = nls.builtins.diagnostics
 local completion = nls.builtins.completion
-local actions = nls.builtins.code_actions
+-- local actions = nls.builtins.code_actions
 
 nls.setup({
     sources = {
         -- formatting
         formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "4" } }),
-        formatting.prettierd.with({ extra_args = { "--no-semi" } }),
+        formatting.prettierd,
         formatting.goimports,
         formatting.gofumpt,
         formatting.terraform_fmt,
@@ -34,13 +34,8 @@ nls.setup({
         completion.spell,
 
         -- actions
-        actions.gitsigns,
+        -- actions.gitsigns,
     },
-    -- used to keep clangd and clang_format happy
-    -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
-    on_init = function(client, _)
-        client.capabilities.offsetEncodinga = { "utf-16" }
-    end,
 })
 
 mason_null_ls.setup({ automatic_installation = true })

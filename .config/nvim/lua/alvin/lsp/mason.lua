@@ -28,10 +28,16 @@ local lsp_servers = {
     "jsonls",
     "yamlls",
     "bashls",
-    "vimls",
+    -- "vimls",
     "tsserver",
     "jdtls",
     "clangd",
+    -- "sourcekit", -- for Swift and C-based languages
+    -- "tailwindcss",
+    "cssls",
+    -- "vuels",
+    "volar",
+    "html",
 }
 
 mason.setup({

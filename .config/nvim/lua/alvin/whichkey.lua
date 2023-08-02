@@ -33,22 +33,10 @@ local n_opts = {
     nowait = true, -- use `nowait` when creating keymaps
 }
 
--- TODO:Move this to telescopde-config.lua
-local function project_files()
-    local opts = {} -- define here if you want to define something
-
-    vim.fn.system("git rev-parse --is-inside-work-tree")
-    if vim.v.shell_error == 0 then
-        require("telescope.builtin").git_files(opts)
-    else
-        require("telescope.builtin").find_files(opts)
-    end
-end
-
 local n_mappings = {
     f = {
         name = "Telescope",
-        f = { project_files, "Find files" },
+        f = { "<cmd> Telescope find_files<CR>", "Find files" },
         g = { "<cmd> Telescope live_grep<CR>", "Live grep" },
         b = { "<cmd> Telescope buffers<CR>", "List buffers" },
         h = { "<cmd> Telescope help_tags<CR>", "Help" },

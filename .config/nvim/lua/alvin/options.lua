@@ -14,6 +14,7 @@ local options = {
     smartcase = true, -- automatically switch search to case-sensitive when search query contains an uppercase letter
     incsearch = true, -- incremental search that shows partial matches
     fileencoding = "utf-8", -- the encoding written to a file
+    encoding = "utf-8",
     linebreak = true, -- avoid wrapping a line in the middle of a word
     scrolloff = 20, -- the number of lines the screen columns to keep above and below the cursor
     sidescrolloff = 8, -- the number of lines the screen columns to keep left and right the cursor
@@ -41,14 +42,17 @@ local options = {
     updatetime = 50, -- used for cursorhold autocommand event
     linespace = 20,
     autowriteall = false,
+    colorcolumn = "80", -- set column guide too avoid lengthy code
 }
 
 -- Disable netrw
--- vim.g.loaded = 1
--- vim.g.loaded_netrwPlugin = 1
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- undo tree layout options (1, 2, 3, 4)
 vim.g.undotree_WindowLayout = 2
+
+vim.g.tmux_navigator_no_mappings = 1
 
 -- vim go options
 vim.g.go_highlight_function_calls = 1
@@ -62,6 +66,7 @@ vim.g.go_textobj_enabled = 0
 
 -- wrap to next line
 vim.opt.whichwrap:append("<,>,[,]")
+vim.opt.wildignore:append({ "*/node_modules/*" })
 
 for k, v in pairs(options) do
     vim.opt[k] = v

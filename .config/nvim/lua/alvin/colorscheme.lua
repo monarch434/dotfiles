@@ -1,10 +1,17 @@
 local tokyonight = "tokyonight"
 local catppuccin = "catppuccin"
+local everforest = "everforest"
 
 vim.g.tokyonight_style = "storm"
+
 vim.g.catppuccin_flavour = "frappe"
 
-local chosen_theme = tokyonight
+vim.g.everforest_background = "medium"
+vim.g.everforest_dim_inactive_windows = 0
+vim.g.everforest_ui_contrast = "high"
+vim.g.everforest_current_word = "bold" -- default "grey background"
+
+local chosen_theme = everforest
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. chosen_theme)
 

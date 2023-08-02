@@ -63,16 +63,19 @@ local function lsp_keymaps(bufnr)
         l = {
             name = "LSP",
             f = { ":lua vim.lsp.buf.format()<cr>", "Format file" },
-            D = { ":lua vim.lsp.buf.declaration()<cr>", "Goto Declaration" },
+            -- D = { ":lua vim.lsp.buf.declaration()<cr>", "Goto Declaration" },
+            D = { "<cmd>Lspsaga peek_definition<cr>", "Goto Declaration" },
             i = { ":lua vim.lsp.buf.implementation()<cr>", "Goto implementation" },
             d = { ":lua vim.lsp.buf.definition()<cr>", "Goto definition" },
-            r = { ":Telescope lsp_references<cr>", "List references" },
-            t = { ":Telescope lsp_type_definitions<cr>", "Goto type definition" },
-            a = { ":lua vim.lsp.buf.code_action()<cr>", "Code action", mode = { "n", "v" } },
-            n = { ":lua vim.diagnostic.goto_next()<cr>", "Next diagnostic" },
-            p = { ":lua vim.diagnostic.goto_prev()<cr>", "Previous diagnostic" },
-            R = { ":IncRename ", "Rename" },
-            k = { ":lua vim.lsp.buf.hover()<cr>", "Hover" },
+            r = { "<cmd>Lspsaga finder ref<cr>", "List references" },
+            t = { "<cmd>Lspsaga finder def+tyd<cr>", "Goto type definition" },
+            a = { "<cmd>Lspsaga code_action<CR>", "Code action", mode = { "n", "v" } },
+            n = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Next diagnostic" },
+            p = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Previous diagnostic" },
+            R = { ":lua vim.lsp.buf.rename()<cr>", "Rename" },
+            -- R = { "<cmd>Lspsaga rename<CR>", "Rename" }, -- NOTE: This is broken :(
+            -- k = { ":lua vim.lsp.buf.hover()<cr>", "Hover" },
+            k = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
         },
     }
 
@@ -106,9 +109,12 @@ end
 M.on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
+    if client.name == "html" then
+        client.capabilities.textDocument.completion.completionItem.snippetSupport = true
+    end
     lsp_keymaps(bufnr)
     -- it's nice, but annoying
-    format_on_save(bufnr)
+    -- format_on_save(bufnr)
     lsp_word_highlight(client)
 end
 
@@ -121,5 +127,6 @@ if not cmp_nvim_lsp_status_ok then
 end
 
 M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+M.capabilities.offsetEncoding = { "utf-16" } -- clangd fix
 
 return M

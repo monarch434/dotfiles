@@ -76,6 +76,9 @@ packer.startup(function(use)
     use("williamboman/mason.nvim") -- intergrates nvim-lspconfig & mason-lspconfig LSP plugin
     use("williamboman/mason-lspconfig.nvim") -- LSP
     use("neovim/nvim-lspconfig") -- LSP
+    use("nvimdev/lspsaga.nvim", {
+        after = "nvim-lspconfig",
+    })
     use("RRethy/vim-illuminate")
     use("jose-elias-alvarez/null-ls.nvim")
     use("jay-babu/mason-null-ls.nvim")
@@ -104,19 +107,15 @@ packer.startup(function(use)
 
     use({ "mfussenegger/nvim-jdtls" })
 
+    -- use({ "ap/vim-css-color" })
+    use({ "norcalli/nvim-colorizer.lua" })
+
     --NOTE possible git tools
     --- https://github.com/sindrets/diffview.nvim
     --- https://github.com/TimUntersberger/neogit
     --- https://github.com/kdheepak/lazygit.nvim
     --- https://github.com/tpope/vim-fugitive
     use({ "tpope/vim-fugitive" })
-
-    use({
-        "smjonas/inc-rename.nvim",
-        config = function()
-            require("inc_rename").setup()
-        end,
-    })
 
     -- NOTE why do I even have you you here
     -- use({ "danymat/neogen", requires = "nvim-treesitter/nvim-treesitter" }) -- multilanguage annotations
@@ -150,7 +149,6 @@ packer.startup(function(use)
     -- use ({"akinsho/bufferline.nvim", config = function ()
     --     require("bufferline").setup()
     -- end})
-    -- glepnir/lspsaga.nvim
     use("lukas-reineke/indent-blankline.nvim")
 
     -- Automatically setup packer.nvim
