@@ -64,7 +64,7 @@ lazy.setup({
 
     "sebdah/vim-delve",
     "b0o/schemastore.nvim",
-
+    "kevinhwang91/nvim-bqf",
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
     { "windwp/nvim-autopairs" },
     {
@@ -92,6 +92,14 @@ lazy.setup({
 
     "mfussenegger/nvim-jdtls",
     "norcalli/nvim-colorizer.lua",
+    {
+        "iamcco/markdown-preview.nvim",
+        build = "cd app && npm install",
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        ft = { "markdown" },
+    },
 
     --NOTE possible git tools
     --- https://github.com/sindrets/diffview.nvim

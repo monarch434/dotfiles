@@ -50,6 +50,7 @@ local n_mappings = {
         b = { "<cmd> Gitsigns toggle_current_line_blame<CR>", "Current line blame" },
         S = { "<cmd> Gitsigns stage_buffer<CR>", "Stage current file" },
         U = { "<cmd> Gitsigns reset_buffer_index<CR>", "Unstage current file" },
+        r = { "<cmd> Gitsigns reset_hunk<CR>", "Reset Hunk" },
     },
     t = {
         name = "Trouble",
