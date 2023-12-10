@@ -1,11 +1,11 @@
 #!/bin/sh
 
 create_symlinks() {
-    ln -sf ${PWD}/.config/starship.toml ~/.config/
-    ln -sf ${PWD}/.config/bat/ ~/.config/
-    ln -sf ${PWD}/.config/nvim/ ~/.config/
-    ln -sf ${PWD}/.config/tmux/ ~/.config/
-    ln -sf ${PWD}/.config/kitty/ ~/.config/
+    ln -s ${PWD}/.config/starship.toml ~/.config/
+    ln -s ${PWD}/.config/bat/ ~/.config/
+    ln -s ${PWD}/.config/nvim/ ~/.config/
+    ln -s ${PWD}/.config/tmux/ ~/.config/
+    ln -s ${PWD}/home/wezterm.lua ~/.wezterm.lua
 } 
 
 create_symlinks
