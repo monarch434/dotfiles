@@ -64,7 +64,7 @@ local function lsp_keymaps(bufnr)
             name = "LSP",
             f = { ":lua vim.lsp.buf.format()<cr>", "Format file" },
             -- D = { ":lua vim.lsp.buf.declaration()<cr>", "Goto Declaration" },
-            D = { "<cmd>Lspsaga peek_definition<cr>", "Goto Declaration" },
+            D = { "<cmd>Lspsaga peek_definition<cr>", "Peek Definition" },
             i = { ":lua vim.lsp.buf.implementation()<cr>", "Goto implementation" },
             d = { ":lua vim.lsp.buf.definition()<cr>", "Goto definition" },
             r = { "<cmd>Lspsaga finder ref<cr>", "List references" },
@@ -72,8 +72,7 @@ local function lsp_keymaps(bufnr)
             a = { "<cmd>Lspsaga code_action<CR>", "Code action", mode = { "n", "v" } },
             n = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Next diagnostic" },
             p = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Previous diagnostic" },
-            R = { ":lua vim.lsp.buf.rename()<cr>", "Rename" },
-            -- R = { "<cmd>Lspsaga rename<CR>", "Rename" }, -- NOTE: This is broken :(
+            R = { "<cmd>Lspsaga rename<CR>", "Rename" },
             -- k = { ":lua vim.lsp.buf.hover()<cr>", "Hover" },
             k = { "<cmd>Lspsaga hover_doc<cr>", "Hover" },
         },

@@ -10,7 +10,7 @@ lspsaga.setup({
     -- },
     -- disabled because it gives errors and doesn't even display
     lightbulb = {
-        enable = false,
+        enable = true,
         virtual_text = false,
     },
     finder = {

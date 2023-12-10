@@ -22,7 +22,6 @@ nls.setup({
         formatting.prettierd,
         formatting.goimports,
         formatting.gofumpt,
-        formatting.terraform_fmt,
         formatting.google_java_format,
         formatting.clang_format,
 

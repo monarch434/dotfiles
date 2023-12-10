@@ -4,6 +4,8 @@ if not ok then
     return
 end
 
+telescope.load_extension("fzf")
+
 local actions = require("telescope.actions")
 
 local M = {}
@@ -21,7 +23,7 @@ local M = {}
 
 telescope.setup({
     defaults = {
-        prompt_prefix = "ﰲ ",
+        prompt_prefix = "󰭎  ",
         selection_caret = " ",
         path_display = { "smart" },
         mappings = {
@@ -33,7 +35,7 @@ telescope.setup({
                 ["<C-k>"] = actions.move_selection_previous,
 
                 ["<C-v>"] = actions.file_vsplit,
-                ["<C-->"] = actions.file_split,
+                ["<C-h>"] = actions.file_split,
             },
         },
     },
@@ -59,5 +61,4 @@ telescope.setup({
     },
 })
 
-telescope.load_extension("fzf")
 return M

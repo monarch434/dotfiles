@@ -1,158 +1,136 @@
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = fn.system({
+-- Automatically install lazy
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
         "git",
         "clone",
-        "--depth",
-        "1",
-        "https://github.com/wbthomason/packer.nvim",
-        install_path,
+        "--branch=stable", -- latest stable release
+        lazypath,
     })
-    print("Installing packer close and reopen Neovim...")
-    vim.cmd([[packadd packer.nvim]])
+    print("Installing Lazy close and reopen Neovim...")
 end
-
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
+vim.opt.rtp:prepend(lazypath)
 
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
+local status_ok, lazy = pcall(require, "lazy")
 if not status_ok then
     return
 end
 
--- Initialise packer plugin manager
-packer.init({
-    -- opt_default = true, -- Default to using opt (as opposed to start) plugins
-    display = {
-        working_sym = "⚙️", -- The symbol for a plugin being installed/updated
-        error_sym = "💥", -- The symbol for a plugin with an error in installation/updating
-        done_sym = "🎉", -- The symbol for a plugin which has completed installation/updating
-        removed_sym = "🔥", -- The symbol for an unused plugin which was removed
-        moved_sym = "🛸", -- The symbol for a plugin which was moved (e.g. from opt to start)
-        open_fn = function()
-            return require("packer.util").float({ border = "rounded" }) -- An optional function to open a window for packer's display
-        end,
-    },
-})
-
 --  TODO: properly sort out plugins with keybindings, config, etc.
-packer.startup(function(use)
-    use("wbthomason/packer.nvim") -- packer can manage itself
-    use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
-    use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
+lazy.setup({
+    "nvim-lua/plenary.nvim", -- Useful lua functions used by lots of plugins
+    "tpope/vim-fugitive", -- Git in neovim
 
-    use("ThePrimeagen/vim-be-good") -- for practise
-    use("kyazdani42/nvim-web-devicons")
+    "ThePrimeagen/vim-be-good", -- for practise
 
     -- THEMES --
-    use({ "folke/tokyonight.nvim" })
-    use({ "catppuccin/nvim", as = "catppuccin" })
+    "folke/tokyonight.nvim",
+    { "catppuccin/nvim", name = "catppuccin" },
+    "sainnhe/everforest",
+    "nvim-tree/nvim-web-devicons", -- Fancy icons
 
-    use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
+    { "nvim-lualine/lualine.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
 
-    -- cmp plugins
-    use("hrsh7th/nvim-cmp") -- The completion plugin
-    use("hrsh7th/cmp-buffer") -- buffer completions
-    use("hrsh7th/cmp-path") -- path completions
-    use("hrsh7th/cmp-cmdline") -- cmdline completions
-    use("saadparwaiz1/cmp_luasnip") -- snippet completions
-    use("hrsh7th/cmp-nvim-lua") -- lua completions
-    use("hrsh7th/cmp-nvim-lsp") -- cmp for LSP
-
-    -- snippets
-    use("L3MON4D3/LuaSnip") --snippet engine
-    use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+    -- Autocompletion
+    {
+        "hrsh7th/nvim-cmp", -- The completion plugin
+        dependencies = {
+            "L3MON4D3/LuaSnip", --snippet engine
+            "saadparwaiz1/cmp_luasnip", -- snippet completions
+            "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+            "hrsh7th/cmp-nvim-lsp", -- cmp for LSP
+            "hrsh7th/cmp-path", -- path completions
+        },
+    },
 
     -- LSP --
-    use("williamboman/mason.nvim") -- intergrates nvim-lspconfig & mason-lspconfig LSP plugin
-    use("williamboman/mason-lspconfig.nvim") -- LSP
-    use("neovim/nvim-lspconfig") -- LSP
-    use("nvimdev/lspsaga.nvim", {
-        after = "nvim-lspconfig",
-    })
-    use("RRethy/vim-illuminate")
-    use("jose-elias-alvarez/null-ls.nvim")
-    use("jay-babu/mason-null-ls.nvim")
+    {
+        "neovim/nvim-lspconfig", -- LSP
+        dependencies = {
+            "williamboman/mason.nvim", -- intergrates nvim-lspconfig & mason-lspconfig LSP plugin
+            "williamboman/mason-lspconfig.nvim", -- LSP
+            { "j-hui/fidget.nvim", tag = "legacy", opts = {} }, -- Useful status updates for LSP
+            "folke/neodev.nvim", -- signature help for development
+        },
+    },
+    "nvimdev/lspsaga.nvim", -- better LSP
+
+    "b0o/schemastore.nvim", -- json & yaml schemastores for LSP
+    "kevinhwang91/nvim-bqf", -- better quickfix list
+
+    "RRethy/vim-illuminate",
+    "jose-elias-alvarez/null-ls.nvim",
+    "jay-babu/mason-null-ls.nvim",
+
+    "lewis6991/gitsigns.nvim",
+
+    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    { "windwp/nvim-autopairs" },
+    {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+    },
+    {
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.2",
+        dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-fzf-native.nvim" },
+    },
+
+    "numToStr/Comment.nvim",
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    "norcalli/nvim-colorizer.lua", -- CSS colors
 
     -- debugger
-    use("sebdah/vim-delve")
-
-    use("b0o/schemastore.nvim")
-
-    use({ "nvim-telescope/telescope.nvim", tag = "0.1.0" })
-    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-    use({ "windwp/nvim-autopairs" })
-    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-
-    use({ "lewis6991/gitsigns.nvim" })
-
-    use("numToStr/Comment.nvim")
-    use("JoosepAlviste/nvim-ts-context-commentstring")
-
-    use({
-        "lewis6991/impatient.nvim",
-        run = function()
-            require("impatient").enable_profile()
+    "mfussenegger/nvim-jdtls",
+    {
+        "iamcco/markdown-preview.nvim",
+        build = "cd app && npm install",
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
         end,
-    })
-
-    use({ "mfussenegger/nvim-jdtls" })
-
-    -- use({ "ap/vim-css-color" })
-    use({ "norcalli/nvim-colorizer.lua" })
+        ft = { "markdown" },
+    },
 
     --NOTE possible git tools
     --- https://github.com/sindrets/diffview.nvim
     --- https://github.com/TimUntersberger/neogit
     --- https://github.com/kdheepak/lazygit.nvim
     --- https://github.com/tpope/vim-fugitive
-    use({ "tpope/vim-fugitive" })
 
-    -- NOTE why do I even have you you here
-    -- use({ "danymat/neogen", requires = "nvim-treesitter/nvim-treesitter" }) -- multilanguage annotations
+    { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 
-    use({ "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } })
+    {
+        "nvim-tree/nvim-tree.lua",
+        lazy = false,
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+    },
+    {
+        "stevearc/oil.nvim",
+        opts = {},
+        -- Optional dependencies
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
 
-    use({ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } })
-    use({ "folke/which-key.nvim" })
+    "folke/which-key.nvim",
 
-    use({ "folke/trouble.nvim", requires = { "nvim-tree/nvim-web-devicons" } })
+    { "folke/trouble.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
 
-    use({ "christoomey/vim-tmux-navigator" })
+    "christoomey/vim-tmux-navigator",
 
-    -- TODO: fix terraform and hcl formatting
-    use({ "hashivim/vim-terraform" })
+    "mbbill/undotree",
+    "tpope/vim-surround",
+    "tpope/vim-obsession", -- used for tmux-resurrect to restore saved sessions
+    {"lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {}},
+})
 
-    -- TODO: find a reason to use this instead of a normal LSP???
-    -- use({ "fatih/vim-go" })
+-- SmiteshP/nvim-navic
+-- https://github.com/arkav/lualine-lsp-progress
+-- kevinhwang91/nvim-bqf
+-- https://github.com/ggandor/leap.nvim
 
-    use({ "mbbill/undotree" })
-
-    use("tpope/vim-surround")
-
-    -- used for tmux-resurrect to restore saved sessions
-    use("tpope/vim-obsession")
-    -- SmiteshP/nvim-navic
-    -- https://github.com/arkav/lualine-lsp-progress
-    -- kevinhwang91/nvim-bqf
-    -- https://github.com/ggandor/leap.nvim
-
-    -- use ({"akinsho/bufferline.nvim", config = function ()
-    --     require("bufferline").setup()
-    -- end})
-    use("lukas-reineke/indent-blankline.nvim")
-
-    -- Automatically setup packer.nvim
-    if PACKER_BOOTSTRAP then
-        require("packer").sync()
-    end
-end)
+-- use ({"akinsho/bufferline.nvim", config = function ()
+--     require("bufferline").setup()
+-- end})

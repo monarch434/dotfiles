@@ -26,7 +26,7 @@ local n_opts = {
     mode = "n", -- NORMAL mode
     -- prefix: use "<leader>f" for example for mapping everything related to finding files
     -- the prefix is prepended to every mapping part of `mappings`
-    prefix = "<leader>",
+    prefix = "",
     buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
     silent = true, -- use `silent` when creating keymaps
     noremap = true, -- use `noremap` when creating keymaps
@@ -34,30 +34,33 @@ local n_opts = {
 }
 
 local n_mappings = {
-    f = {
-        name = "Telescope",
-        f = { "<cmd> Telescope find_files<CR>", "Find files" },
-        g = { "<cmd> Telescope live_grep<CR>", "Live grep" },
-        b = { "<cmd> Telescope buffers<CR>", "List buffers" },
-        h = { "<cmd> Telescope help_tags<CR>", "Help" },
-    },
-
-    h = {
-        name = "Gitsigns",
-        s = { "<cmd> Gitsigns preview_hunk<CR>", "Preview Hunk" },
-        n = { "<cmd> Gitsigns next_hunk<CR>", "Next Hunk" },
-        p = { "<cmd> Gitsigns prev_hunk<CR>", "Previous Hunk" },
-        b = { "<cmd> Gitsigns toggle_current_line_blame<CR>", "Current line blame" },
-        S = { "<cmd> Gitsigns stage_buffer<CR>", "Stage current file" },
-        U = { "<cmd> Gitsigns reset_buffer_index<CR>", "Unstage current file" },
-        r = { "<cmd> Gitsigns reset_hunk<CR>", "Reset Hunk" },
-    },
-    t = {
-        name = "Trouble",
-        t = { "<cmd>TroubleToggle<CR>", "Toggle Trouble" },
-        w = { "<cmd>TroubleToggle workspace_diagnostics<CR>", "Trouble Workespace" },
-        d = { "<cmd>TroubleToggle document_diagnostics<CR>", "Trouble Workespace" },
-        r = { "<cmd>TroubleToggle lsp_references<CR>", "Trouble Lsp_references" },
+    ["<leader>"] = {
+        s = {
+            name = "Telescope",
+            ["f"] = { "<cmd> Telescope find_files<CR>", "[S]earch [F]iles" },
+            ["w"] = { "<cmd> Telescope grep_string<CR>", "[S]earch [W]ord" },
+            ["r"] = { "<cmd> Telescope resume<CR>", "[S]earch [R]resume" },
+            ["h"] = { "<cmd> Telescope help_tags<CR>", "[S]earch [H]elp" },
+            ["b"] = { "<cmd> Telescope buffers<CR>", "[S]earch [B]uffers" },
+        },
+        ["/"] = { "<cmd> Telescope current_buffer_fuzzy_find<CR>", "[/] Fuzzily search in current buffer" },
+        h = {
+            name = "Gitsigns",
+            s = { "<cmd> Gitsigns preview_hunk<CR>", "Preview Hunk" },
+            n = { "<cmd> Gitsigns next_hunk<CR>", "Next Hunk" },
+            p = { "<cmd> Gitsigns prev_hunk<CR>", "Previous Hunk" },
+            b = { "<cmd> Gitsigns toggle_current_line_blame<CR>", "Current line blame" },
+            S = { "<cmd> Gitsigns stage_buffer<CR>", "Stage current file" },
+            U = { "<cmd> Gitsigns reset_buffer_index<CR>", "Unstage current file" },
+            r = { "<cmd> Gitsigns reset_hunk<CR>", "Reset Hunk" },
+        },
+        t = {
+            name = "Trouble",
+            t = { "<cmd>TroubleToggle<CR>", "Toggle Trouble" },
+            w = { "<cmd>TroubleToggle workspace_diagnostics<CR>", "Trouble Workespace" },
+            d = { "<cmd>TroubleToggle document_diagnostics<CR>", "Trouble Workespace" },
+            r = { "<cmd>TroubleToggle lsp_references<CR>", "Trouble Lsp_references" },
+        },
     },
 }
 

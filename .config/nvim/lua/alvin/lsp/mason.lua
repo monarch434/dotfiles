@@ -4,6 +4,12 @@ if not mason_ok then
     return
 end
 
+local neodev_ok, neodev = pcall(require, "neodev")
+if not neodev_ok then
+    print("unable to load neodev")
+    return
+end
+
 local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_ok then
     return
@@ -32,13 +38,14 @@ local lsp_servers = {
     "tsserver",
     "jdtls",
     "clangd",
-    -- "sourcekit", -- for Swift and C-based languages
     -- "tailwindcss",
     "cssls",
     -- "vuels",
     "volar",
     "html",
 }
+
+neodev.setup()
 
 mason.setup({
     ui = {
