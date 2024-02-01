@@ -34,6 +34,8 @@ local lsp_servers = {
     "jsonls",
     "yamlls",
     "bashls",
+    "terraformls",
+    "tflint",
     -- "vimls",
     "tsserver",
     "jdtls",
