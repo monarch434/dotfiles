@@ -6,6 +6,7 @@ create_symlinks() {
     ln -s ${PWD}/.config/nvim/ ~/.config
     ln -s ${PWD}/.config/tmux/ ~/.config
     ln -s ${PWD}/home/wezterm.lua ~/.wezterm.lua
+    ln -s ${PWD}/home/.zshrc ~/.zshrc
 } 
 
 create_symlinks
