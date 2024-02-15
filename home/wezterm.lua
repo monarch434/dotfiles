@@ -8,8 +8,8 @@ end
 
 -- config.color_scheme = "Everforest Dark (Gogh)"
 config.font = wezterm.font_with_fallback({
-    { family = "Fira Code", weight = "Regular"},
-    { family = 'JetBrains Mono', weight = 'Medium' }
+    { family = 'JetBrains Mono', weight = 'Medium' },
+    { family = "Fira Code", weight = "Regular"}
 })
 
 return config

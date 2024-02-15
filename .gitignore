@@ -1,5 +1,5 @@
 .config/nvim/plugin/
 .config/nvim/lua/.luarc.json
 .config/tmux/plugins
-.config/nvim/.DS_Store
 .config/nvim/lay-lock.json
+**/.DS_Store

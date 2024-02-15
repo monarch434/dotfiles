@@ -14,6 +14,8 @@ oil.setup({
             winblend = 0,
         },
     },
+    delete_to_trash = true,
+    cleanup_delay_ms = 500,
 })
 
 vim.keymap.set("n", "-", oil.open_float, { desc = "Open parent directory" })

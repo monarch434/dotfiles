@@ -24,6 +24,8 @@ nls.setup({
         formatting.gofumpt,
         formatting.google_java_format,
         formatting.clang_format,
+        formatting.hclfmt,
+        formatting.terraform_fmt,
 
         -- diagnostics
         diagnostics.eslint_d,

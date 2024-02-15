@@ -126,6 +126,9 @@ lazy.setup({
     {"lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {}},
 })
 
+-- https://github.com/stevearc/conform.nvim # possible replacemnet for null-ls
+-- https://github.com/danymat/neogen    # used to generate annotations
+-- https://github.com/nvim-neotest/neotest  # used to interact with tests within neovim
 -- SmiteshP/nvim-navic
 -- https://github.com/arkav/lualine-lsp-progress
 -- kevinhwang91/nvim-bqf

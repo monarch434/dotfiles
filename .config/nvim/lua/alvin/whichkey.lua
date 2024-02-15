@@ -38,10 +38,11 @@ local n_mappings = {
         s = {
             name = "Telescope",
             ["f"] = { "<cmd> Telescope find_files<CR>", "[S]earch [F]iles" },
-            ["w"] = { "<cmd> Telescope grep_string<CR>", "[S]earch [W]ord" },
+            ["cw"] = { "<cmd> Telescope grep_string<CR>", "[S]earch [C]urrent [W]ord" },
             ["r"] = { "<cmd> Telescope resume<CR>", "[S]earch [R]resume" },
             ["h"] = { "<cmd> Telescope help_tags<CR>", "[S]earch [H]elp" },
             ["b"] = { "<cmd> Telescope buffers<CR>", "[S]earch [B]uffers" },
+            ["w"] = { "<cmd> Telescope live_grep<CR>", "[S]earch [W]ord" },
         },
         ["/"] = { "<cmd> Telescope current_buffer_fuzzy_find<CR>", "[/] Fuzzily search in current buffer" },
         h = {
