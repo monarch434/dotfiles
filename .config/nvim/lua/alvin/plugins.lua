@@ -36,7 +36,7 @@ lazy.setup({
     {
         "hrsh7th/nvim-cmp", -- The completion plugin
         dependencies = {
-            "L3MON4D3/LuaSnip", --snippet engine
+            { "L3MON4D3/LuaSnip", version = "v2.*"}, --snippet engine
             "saadparwaiz1/cmp_luasnip", -- snippet completions
             "rafamadriz/friendly-snippets", -- a bunch of snippets to use
             "hrsh7th/cmp-nvim-lsp", -- cmp for LSP
@@ -50,7 +50,7 @@ lazy.setup({
         dependencies = {
             "williamboman/mason.nvim", -- intergrates nvim-lspconfig & mason-lspconfig LSP plugin
             "williamboman/mason-lspconfig.nvim", -- LSP
-            { "j-hui/fidget.nvim", tag = "legacy", opts = {} }, -- Useful status updates for LSP
+            { "j-hui/fidget.nvim", tag = "v1.4.0", opts = {} }, -- Useful status updates for LSP
             "folke/neodev.nvim", -- signature help for development
         },
     },
@@ -120,10 +120,11 @@ lazy.setup({
 
     "christoomey/vim-tmux-navigator",
 
+    "ThePrimeagen/harpoon",
     "mbbill/undotree",
     "tpope/vim-surround",
     "tpope/vim-obsession", -- used for tmux-resurrect to restore saved sessions
-    {"lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {}},
+    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 })
 
 -- https://github.com/stevearc/conform.nvim # possible replacemnet for null-ls

@@ -45,7 +45,7 @@ local n_mappings = {
             ["w"] = { "<cmd> Telescope live_grep<CR>", "[S]earch [W]ord" },
         },
         ["/"] = { "<cmd> Telescope current_buffer_fuzzy_find<CR>", "[/] Fuzzily search in current buffer" },
-        h = {
+        g = {
             name = "Gitsigns",
             s = { "<cmd> Gitsigns preview_hunk<CR>", "Preview Hunk" },
             n = { "<cmd> Gitsigns next_hunk<CR>", "Next Hunk" },
@@ -62,6 +62,15 @@ local n_mappings = {
             d = { "<cmd>TroubleToggle document_diagnostics<CR>", "Trouble Workespace" },
             r = { "<cmd>TroubleToggle lsp_references<CR>", "Trouble Lsp_references" },
         },
+        h = {
+            name = "Harpoon",
+            a = { "<cmd> lua require('harpoon.mark').add_file()<CR>", "Harpoon Add" },
+            t = { "<cmd> lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon Toggle" },
+        },
+        u = { "<cmd> lua require('harpoon.ui').nav_file(1)<CR>", "Harpoon nav 1" },
+        i = { "<cmd> lua require('harpoon.ui').nav_file(2)<CR>", "Harpoon nav 2" },
+        o = { "<cmd> lua require('harpoon.ui').nav_file(3)<CR>", "Harpoon nav 3" },
+        p = { "<cmd> lua require('harpoon.ui').nav_file(4)<CR>", "Harpoon nav 4" },
     },
 }
 

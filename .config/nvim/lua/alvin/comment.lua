@@ -4,12 +4,19 @@ if not status_ok then
     return
 end
 
-local ok, context_commentstring = pcall(require, "ts_context_commentstring.integrations.comment_nvim")
+local ok, context_commentstring = pcall(require, "ts_context_commentstring")
 if not ok then
     print("unable to load ts_context_commentstring")
     return
 end
 
+context_commentstring.setup({
+    enable_autocmd = false,
+    languages = {
+        typescript = "// %s",
+    },
+})
+
 comment.setup({
-    pre_hook = context_commentstring.create_pre_hook(),
+    pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 })

@@ -36,6 +36,7 @@ local lsp_servers = {
     "bashls",
     "terraformls",
     "tflint",
+    "emmet_ls",
     -- "vimls",
     "tsserver",
     "jdtls",

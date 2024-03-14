@@ -54,6 +54,9 @@ vim.g.undotree_WindowLayout = 2
 
 vim.g.tmux_navigator_no_mappings = 1
 
+-- skip backwards compatibility checks
+vim.g.skip_ts_context_commentstring_module = true
+
 -- vim go options
 vim.g.go_highlight_function_calls = 1
 vim.g.go_highlight_types = 1
