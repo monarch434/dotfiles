@@ -46,14 +46,33 @@ local n_mappings = {
         },
         ["/"] = { "<cmd> Telescope current_buffer_fuzzy_find<CR>", "[/] Fuzzily search in current buffer" },
         g = {
-            name = "Gitsigns",
+            name = "Git",
             s = { "<cmd> Gitsigns preview_hunk<CR>", "Preview Hunk" },
-            n = { "<cmd> Gitsigns next_hunk<CR>", "Next Hunk" },
-            p = { "<cmd> Gitsigns prev_hunk<CR>", "Previous Hunk" },
+            n = {
+                function()
+                    vim.schedule(function()
+                        require("gitsigns").next_hunk()
+                    end)
+                    return "<Ignore>"
+                end,
+                "Next Hunk",
+            },
+
+            p = {
+                function()
+                    vim.schedule(function()
+                        require("gitsigns").prev_hunk()
+                    end)
+                    return "<Ignore>"
+                end,
+                "Previous Hunk",
+            },
             b = { "<cmd> Gitsigns toggle_current_line_blame<CR>", "Current line blame" },
             S = { "<cmd> Gitsigns stage_buffer<CR>", "Stage current file" },
             U = { "<cmd> Gitsigns reset_buffer_index<CR>", "Unstage current file" },
             r = { "<cmd> Gitsigns reset_hunk<CR>", "Reset Hunk" },
+            g = { vim.cmd.Git, "Git" },
+            d = { "<cmd> Gvdiffsplit!<CR>", "Git diff" },
         },
         t = {
             name = "Trouble",
@@ -71,6 +90,10 @@ local n_mappings = {
         i = { "<cmd> lua require('harpoon.ui').nav_file(2)<CR>", "Harpoon nav 2" },
         o = { "<cmd> lua require('harpoon.ui').nav_file(3)<CR>", "Harpoon nav 3" },
         p = { "<cmd> lua require('harpoon.ui').nav_file(4)<CR>", "Harpoon nav 4" },
+    },
+    g = {
+        u = { "<cmd>diffget //2<CR>", "Get //2" },
+        h = { "<cmd>diffget //3<CR>", "Get //3" },
     },
 }
 

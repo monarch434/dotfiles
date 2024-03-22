@@ -81,4 +81,4 @@ keymap("v", "<C-y>", '"+y', opts)
 keymap("v", "<C-y>y", '"+yy', opts)
 
 -- paste from clipboard
-keymap({"n", "v"}, "<C-p>", '"+p', opts)
+keymap({ "n", "v" }, "<C-p>", '"+p', opts)

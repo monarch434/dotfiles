@@ -36,7 +36,7 @@ lazy.setup({
     {
         "hrsh7th/nvim-cmp", -- The completion plugin
         dependencies = {
-            { "L3MON4D3/LuaSnip", version = "v2.*"}, --snippet engine
+            { "L3MON4D3/LuaSnip", version = "v2.*" }, --snippet engine
             "saadparwaiz1/cmp_luasnip", -- snippet completions
             "rafamadriz/friendly-snippets", -- a bunch of snippets to use
             "hrsh7th/cmp-nvim-lsp", -- cmp for LSP
