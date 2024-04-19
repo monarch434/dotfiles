@@ -78,8 +78,9 @@ local n_mappings = {
             name = "Trouble",
             t = { "<cmd>TroubleToggle<CR>", "Toggle Trouble" },
             w = { "<cmd>TroubleToggle workspace_diagnostics<CR>", "Trouble Workespace" },
-            d = { "<cmd>TroubleToggle document_diagnostics<CR>", "Trouble Workespace" },
+            d = { "<cmd>TroubleToggle document_diagnostics<CR>", "Trouble document" },
             r = { "<cmd>TroubleToggle lsp_references<CR>", "Trouble Lsp_references" },
+            h = { "<cmd>TodoTrouble<CR>", "Trouble TODO list" },
         },
         h = {
             name = "Harpoon",

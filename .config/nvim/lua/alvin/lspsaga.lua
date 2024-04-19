@@ -5,9 +5,6 @@ if not status_ok then
 end
 
 lspsaga.setup({
-    -- code_action = {
-    --     extend_gitsigns = false,
-    -- },
     -- disabled because it gives errors and doesn't even display
     lightbulb = {
         enable = true,
@@ -16,8 +13,8 @@ lspsaga.setup({
     finder = {
         keys = {
             shuttle = "<C-n>",
-            vsplit = 'v',
-            split = 'h'
-        }
-    }
+            vsplit = "v",
+            split = "h",
+        },
+    },
 })

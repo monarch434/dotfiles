@@ -45,6 +45,9 @@ local options = {
     colorcolumn = "80", -- set column guide too avoid lengthy code
 }
 
+-- increase neovim startup
+vim.loader.enable()
+
 -- Disable netrw
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1

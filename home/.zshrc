@@ -26,7 +26,7 @@ export PATH="$HOME/go/bin:$PATH"
 
 # fzf
 export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'"
-export FZF_DEFAULT_COMMAND="fd --type f"
+export FZF_DEFAULT_COMMAND="find * -type f | fzf > selected"
 
 # Completion script required for aws completion
 autoload bashcompinit && bashcompinit

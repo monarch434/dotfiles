@@ -1,4 +1,3 @@
--- TODO: add a shell script to auto install everything. Or use Makefile
 require("alvin.options")
 require("alvin.plugins")
 require("alvin.keymaps")

@@ -40,13 +40,13 @@ M.setup = function()
 
     vim.diagnostic.config(config)
 
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "rounded",
-    })
+    -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    --     border = "rounded",
+    -- })
 
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = "rounded",
-    })
+    -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    --     border = "rounded",
+    -- })
 end
 
 local function lsp_keymaps(bufnr)
@@ -65,8 +65,10 @@ local function lsp_keymaps(bufnr)
             f = { ":lua vim.lsp.buf.format()<cr>", "Format file" },
             -- D = { ":lua vim.lsp.buf.declaration()<cr>", "Goto Declaration" },
             D = { "<cmd>Lspsaga peek_definition<cr>", "Peek Definition" },
-            i = { ":lua vim.lsp.buf.implementation()<cr>", "Goto implementation" },
-            d = { ":lua vim.lsp.buf.definition()<cr>", "Goto definition" },
+            -- i = { ":lua vim.lsp.buf.implementation()<cr>", "Goto implementation" },
+            i = { "<cmd>Lspsaga finder imp<cr>", "Goto implementation" },
+            -- d = { ":lua vim.lsp.buf.definition()<cr>", "Goto definition" },
+            d = { "<cmd>Lspsaga goto_definition<cr>", "Goto definition" },
             r = { "<cmd>Lspsaga finder ref<cr>", "List references" },
             t = { "<cmd>Lspsaga finder def+tyd<cr>", "Goto type definition" },
             a = { "<cmd>Lspsaga code_action<CR>", "Code action", mode = { "n", "v" } },

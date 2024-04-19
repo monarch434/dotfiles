@@ -22,11 +22,11 @@ lazy.setup({
     "nvim-lua/plenary.nvim", -- Useful lua functions used by lots of plugins
     "tpope/vim-fugitive", -- Git in neovim
 
-    "ThePrimeagen/vim-be-good", -- for practise
+    { "ThePrimeagen/vim-be-good", lazy = true }, -- for practise
 
     -- THEMES --
-    "folke/tokyonight.nvim",
-    { "catppuccin/nvim", name = "catppuccin" },
+    { "folke/tokyonight.nvim", lazy = true },
+    { "catppuccin/nvim", name = "catppuccin", lazy = true },
     "sainnhe/everforest",
     "nvim-tree/nvim-web-devicons", -- Fancy icons
 
@@ -65,7 +65,7 @@ lazy.setup({
 
     "lewis6991/gitsigns.nvim",
 
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", lazy = true },
     { "windwp/nvim-autopairs" },
     {
         "nvim-telescope/telescope-fzf-native.nvim",
@@ -79,12 +79,14 @@ lazy.setup({
 
     "numToStr/Comment.nvim",
     "JoosepAlviste/nvim-ts-context-commentstring",
-    "norcalli/nvim-colorizer.lua", -- CSS colors
+    {"norcalli/nvim-colorizer.lua", lazy = true }, -- CSS colors
 
     -- debugger
-    "mfussenegger/nvim-jdtls",
+    {"mfussenegger/nvim-jdtls", lazy = true},
     {
         "iamcco/markdown-preview.nvim",
+        lazy = true,
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
         build = "cd app && npm install",
         init = function()
             vim.g.mkdp_filetypes = { "markdown" }
@@ -102,14 +104,13 @@ lazy.setup({
 
     {
         "nvim-tree/nvim-tree.lua",
-        lazy = false,
+        lazy = true,
         dependencies = {
             "nvim-tree/nvim-web-devicons",
         },
     },
     {
         "stevearc/oil.nvim",
-        opts = {},
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
@@ -121,10 +122,15 @@ lazy.setup({
     "christoomey/vim-tmux-navigator",
 
     "ThePrimeagen/harpoon",
-    "mbbill/undotree",
+    {"mbbill/undotree", lazy = true},
     "tpope/vim-surround",
     "tpope/vim-obsession", -- used for tmux-resurrect to restore saved sessions
     { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+    {
+        "danymat/neogen",
+        config = true,
+        version = "2.17.1",
+    },
 })
 
 -- https://github.com/stevearc/conform.nvim # possible replacemnet for null-ls
