@@ -1,21 +1,30 @@
-require("alvin.options")
-require("alvin.plugins")
-require("alvin.keymaps")
-require("alvin.colorscheme")
-require("alvin.cmp")
-require("alvin.lsp")
--- require("alvin.nvim-tree")
-require("alvin.treesitter")
-require("alvin.autopairs")
-require("alvin.comment")
-require("alvin.gitsigns")
-require("alvin.lualine")
-require("alvin.autocommands")
-require("alvin.whichkey")
-require("alvin.indentline")
-require("alvin.trouble")
-require("alvin.todo-comments")
-require("alvin.lspsaga")
-require("alvin.colorizer")
-require("alvin.telescope-config")
-require("alvin.oil")
+require "monarch.options"
+require "monarch.remaps"
+require "monarch.init"
+
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
+-- decrease yank timout an highlight yanked text
+augroup("yank", { clear = true })
+autocmd("TextYankPost", {
+    group = "yank",
+    pattern = "*",
+    callback = function()
+        vim.highlight.on_yank({
+            higroup = "IncSearch",
+            timeout = 40,
+        })
+    end,
+})
+
+-- json file indent
+augroup("jsonIndent", { clear = true })
+autocmd("FileType", {
+    group = "jsonIndent",
+    pattern = { "json" },
+    callback = function()
+        vim.opt.tabstop = 2
+        vim.opt.shiftwidth = 2
+    end,
+})
