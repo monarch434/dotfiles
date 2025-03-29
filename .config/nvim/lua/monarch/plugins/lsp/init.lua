@@ -15,9 +15,11 @@ return {
       "saghen/blink.cmp",
       { "j-hui/fidget.nvim", opts = {} },
       { "williamboman/mason-lspconfig.nvim" },
+      -- { "smjonas/inc-rename.nvim", cmd = "IncRename", opts = {} },
     },
     config = function()
       require "monarch.plugins.lsp.settings.keymaps"
+      local icons = require("monarch.core.globals").icons
 
       -- Diagnostic Config
       -- See :help vim.diagnostic.Opts
@@ -28,10 +30,10 @@ return {
         update_in_insert = true, -- TODO: Do I like this?
         signs = {
           text = {
-            [vim.diagnostic.severity.ERROR] = "󰅚 ",
-            [vim.diagnostic.severity.WARN] = "󰀪 ",
-            [vim.diagnostic.severity.INFO] = "󰋽 ",
-            [vim.diagnostic.severity.HINT] = "󰌶 ",
+            [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+            [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+            [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+            [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
           },
         } or {},
         virtual_text = {
@@ -54,8 +56,8 @@ return {
         handlers = {
           function(server_name)
             local opts = {
-              capabilities = require "monarch.plugins.lsp.settings.capabilities".get(),
-              handlers = require "monarch.plugins.lsp.settings.handlers".get(),
+              capabilities = require("monarch.plugins.lsp.settings.capabilities").get(),
+              handlers = require("monarch.plugins.lsp.settings.handlers").get(),
               -- Note: might not need the workaround
               -- on_attach = require("monarch.plugins.lsp.settings.workaround").on_attach,
             }

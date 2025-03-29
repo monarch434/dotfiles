@@ -23,7 +23,11 @@ autocmd("LspAttach", {
 
     map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
 
-    map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+    -- map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+    -- map("<leader>rn", function()
+    --   local inc_rename = require "inc_rename"
+    --   return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand "<cword>"
+    -- end, "[R]e[n]ame")
 
     map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
 

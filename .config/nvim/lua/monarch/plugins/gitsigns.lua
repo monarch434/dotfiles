@@ -1,7 +1,19 @@
 return {
   "lewis6991/gitsigns.nvim",
   event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
-  opts = {},
+  opts = {
+    -- NOTE: not sure if I like it here
+    -- signs = {
+    --   add = { text = " " },
+    --   change = { text = " " },
+    --   delete = { text = " " },
+    -- },
+    -- signs_staged = {
+    --   add = { text = " " },
+    --   change = { text = " " },
+    --   delete = { text = " " },
+    -- },
+  },
   keys = {
     { "]h", "<cmd>silent Gitsigns next_hunk <cr>", desc = "Next hunk" },
     { "[h", "<cmd>silent Gitsigns prev_hunk <cr>", desc = "Previous hunk" },

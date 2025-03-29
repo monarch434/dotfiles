@@ -1,9 +1,12 @@
 return {
   "folke/snacks.nvim",
   opts = {
+    bigfile = { enabled = true },
+    quickfile = { enabled = true },
     lazygit = {
       enabled = true,
       theme = {
+        -- NOTE: Added because of AlexvZyl/nordic.nvim theme, default couldn't be seen
         inactiveBorderColor = { fg = "WinBar" },
       },
     },

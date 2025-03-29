@@ -65,4 +65,18 @@ M.lsp_ensure_installed = {
   "lua_ls",
 }
 
+M.icons = {
+  diagnostics = {
+    Error = "󰅚 ",
+    Warn = "󰀪 ",
+    Info = "󰋽 ",
+    Hint = "󰌶 ",
+  },
+  git = {
+    added = " ",
+    modified = " ",
+    removed = " ",
+  },
+}
+
 return M
