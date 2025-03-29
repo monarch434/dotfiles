@@ -1,30 +1,29 @@
-# Aliases
-alias k=kubectl
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="half-life"
 
-# activate autosuggestions
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+plugins=(
+    git
+    zsh-autosuggestions
+    zsh-history-substring-search
+    zsh-syntax-highlighting
+    brew
+    aws
+    kubectl
+    macos
+)
 
-# activate zsh-syntax-highlighting
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH/oh-my-zsh.sh
 
-# Ensure unique results when going back in zsh history
-export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+export XDG_CONFIG_HOME="$HOME/.config"
+export EDITOR=nvim
 
-# activate zsh-history-substring-search
-source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey -M emacs '^P' history-substring-search-up
-bindkey -M emacs '^N' history-substring-search-down
+# zsh-completion
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
-# brew shell completion
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    autoload -Uz compinit
+    compinit
+  fi
 
 # fnm setup
 eval "$(fnm env --use-on-cd)"
@@ -40,13 +39,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 
 # fzf
-export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'"
+#export FZF_DEFAULT_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 export FZF_DEFAULT_COMMAND="find * -type f | fzf > selected"
-
-# Completion script required for aws completion
-autoload -U +X bashcompinit && bashcompinit
-autoload -Uz compinit && compinit
-complete -C '/usr/local/bin/aws_completer' aws
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -55,14 +49,19 @@ gch () {
     git checkout "$(git branch --all | fzf | tr -d '[:space:]')"
 }
 
-# kubectl autocompleteion
-source <(kubectl completion zsh)
 export KUBE_EDITOR=nvim
 
+# terragrunt autocompletion
 complete -o nospace -C /opt/homebrew/bin/terragrunt terragrunt
+
+# pnpm autocompletion
+source ~/completion-for-pnpm.zsh
+
+# stern completions
+source <(stern --completion=zsh)
 
 # initialise zoxide
 eval "$(zoxide init --cmd cd zsh)"
 
-# Leave at the end of the file
-eval "$(starship init zsh)"
+# Aliases
+alias ls=eza

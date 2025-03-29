@@ -8,6 +8,8 @@ create_symlinks() {
     ln -s ${PWD}/.config/wezterm ~/.config
     ln -s ${PWD}/home/.zshrc ~/.zshrc
     ln -s ${PWD}/home/.gitmux.conf ~/.gitmux.conf
-} 
+    ln -s ${PWD}/.config/aerospace/ ~/.config
+    ln -s ${PWD}/.config/ghostty/ ~/.config
+}
 
 create_symlinks

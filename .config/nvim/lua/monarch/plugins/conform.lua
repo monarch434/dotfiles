@@ -1,32 +1,31 @@
 return {
-    "stevearc/conform.nvim",
-    keys = {
-        {
-            "<leader>f",
-            function()
-                require("conform").format({ async = true, lsp_fallback = true })
-            end,
-            mode = "",
-            desc = "Format buffer",
-        },
+  "stevearc/conform.nvim",
+  lazy = true,
+  cmd = { "ConformInfo" },
+  init = function()
+    vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+  end,
+  ---@module "conform"
+  ---@type conform.setupOpts
+  opts = {
+    formatters_by_ft = {
+      lua = { "stylua", "shfmt" },
+      go = { "goimports", "gofumpt" },
     },
-    opts = {
-        formatters_by_ft = {
-            lua = { "stylua" },
-            javascript = { "prettierd" },
-            typescript = { "prettierd" },
-            vue = { "prettierd" },
-            css = { "prettierd" },
-            hcl = { "terragrunt_hclfmt" },
-            go = { "goimports", "gofmt" },
-            -- css = { "stylelint" },
-        },
-        formatters = {
-            stylua = { prepend_args = { "--indent-type", "Spaces", "--indent-width", "4" } },
-        },
+    notify_on_error = false,
+    default_format_opts = {
+      timeout_ms = 3000,
+      lsp_format = "fallback",
     },
-    -- TODO: why do I need this??
-    init = function()
-        vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-    end,
+  },
+  keys = {
+    {
+      "<leader>f",
+      function()
+        require("conform").format { async = true }
+      end,
+      mode = "",
+      desc = "Format buffer",
+    },
+  },
 }

@@ -1,51 +1,20 @@
 return {
-    "ThePrimeagen/harpoon",
-    config = true,
-    opts = {
-        excluded_filetypes = { "harpoon", "oil" },
-    },
-    keys = {
-        {
-            "<leader>ht",
-            function()
-                require("harpoon.ui").toggle_quick_menu()
-            end,
-            desc = "Harpoon Toggle",
-        },
-        {
-            "<leader>ha",
-            function()
-                require("harpoon.mark").add_file()
-            end,
-            desc = "Harpoon Add",
-        },
-        {
-            "<leader>u",
-            function()
-                require("harpoon.ui").nav_file(1)
-            end,
-            desc = "Harpoon nav 1",
-        },
-        {
-            "<leader>i",
-            function()
-                require("harpoon.ui").nav_file(2)
-            end,
-            desc = "Harpoon nav 2",
-        },
-        {
-            "<leader>o",
-            function()
-                require("harpoon.ui").nav_file(3)
-            end,
-            desc = "Harpoon nav 3",
-        },
-        {
-            "<leader>p",
-            function()
-                require("harpoon.ui").nav_file(4)
-            end,
-            desc = "Harpoon nav 4",
-        },
-    },
+  "ThePrimeagen/harpoon",
+  branch = "harpoon2",
+  dependencies = { "nvim-lua/plenary.nvim" },
+  config = function()
+    require("harpoon"):setup()
+  end,
+  keys = {
+    -- stylua: ignore start
+    { "<leader>ha", function () require("harpoon"):list():add() end, desc = "Harpoon Add"},
+    { "<leader>he", function () require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, desc = "Harpoon Add" },
+    { "<leader>j", function () require("harpoon"):list():select(1) end, desc = "Harpoon Select 1" },
+    { "<leader>k", function () require("harpoon"):list():select(2) end, desc = "Harpoon Select 2" },
+    { "<leader>l", function () require("harpoon"):list():select(3) end, desc = "Harpoon Select 3" },
+    { "<leader>;", function () require("harpoon"):list():select(4) end, desc = "Harpoon Select 4" },
+    { "<C-S-P>", function () require("harpoon"):list():next() end, desc = "Harpoon Next" },
+    { "<C-S-N>", function () require("harpoon"):list():prev() end, desc = "Harpoon Prev" },
+    -- stylua: ignore end
+  },
 }

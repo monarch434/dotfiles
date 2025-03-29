@@ -1,0 +1,22 @@
+shell-integration-features = no-cursor
+cursor-style-blink = false
+
+theme = tokyonight-storm
+
+macos-titlebar-style = tabs
+
+auto-update = check
+
+font-family = Monaco
+
+window-padding-x = 5
+window-padding-y = 0
+window-padding-balance = true
+window-height = 85
+window-width = 220
+
+font-size = 13.0
+
+unfocused-split-opacity = 0.60
+unfocused-split-fill = #757575
+split-divider-color = #c9c0bb

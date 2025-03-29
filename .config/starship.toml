@@ -1,1 +1,10 @@
 command_timeout = 1500
+
+[kubernetes]
+disabled = false
+contexts = [
+  { context_pattern = "ehs-preprod", style = "#ff9999"},
+  { context_pattern = "ehs-staging", style = "#ff9900"},
+  { context_pattern = "ehs-dev", style = "#0099cc" },
+  { context_pattern = "ehs-arm", style = "#009933" }
+]
