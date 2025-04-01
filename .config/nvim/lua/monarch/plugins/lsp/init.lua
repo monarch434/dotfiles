@@ -23,7 +23,7 @@ return {
         handlers = {
           function(server_name)
             local opts = {
-              capabilities = require("monarch.plugins.lsp.settings.capabilities").get(),
+              capabilities = require("monarch.plugins.lsp.settings.capabilities").get(server_name),
               handlers = require("monarch.plugins.lsp.settings.handlers").get(),
               -- Note: might not need the workaround
               -- on_attach = require("monarch.plugins.lsp.settings.workaround").on_attach,
