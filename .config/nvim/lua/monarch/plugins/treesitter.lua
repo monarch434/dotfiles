@@ -18,7 +18,7 @@ return {
         indent = { enable = true },
         auto_install = false,
         sync_install = false,
-        ensure_installed = require("monarch.core.globals").treesitter_ensure_installed,
+        ensure_installed = _G.monarch.treesitter_ensure_installed,
         incremental_selection = {
           enable = true,
           keymaps = {

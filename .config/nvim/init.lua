@@ -1,3 +1,2 @@
-require "monarch.core.lazy"
-require "monarch.core.autocmd"
-require "monarch.core.remaps"
+_G.monarch = {}
+require "monarch.core"

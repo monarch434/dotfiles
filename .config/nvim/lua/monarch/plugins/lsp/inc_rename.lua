@@ -8,16 +8,12 @@ return {
   opts = {},
   keys = {
     {
-      "<leader>rn",
+      "<leader>grn",
       function()
         return ":IncRename " .. vim.fn.expand "<cword>"
       end,
       desc = "[R]e[n]ame",
       expr = true,
     },
-    -- map("<leader>rn", function()
-    --   local inc_rename = require "inc_rename"
-    --   return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand "<cword>"
-    -- end, "[R]e[n]ame")
   },
 }

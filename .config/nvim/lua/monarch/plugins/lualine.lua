@@ -1,3 +1,5 @@
+-- TODO: check out https://github.com/rebelot/heirline.nvim
+
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",

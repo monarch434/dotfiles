@@ -1,16 +1,26 @@
 local M = {}
 
 M.get = function()
+  -- NOTE: becuase 'AlexvZyl/nordic.nvim' has a darker FloatBorder
   local border = {
-    { "🭽", "FloatBorder" },
-    { "▔", "FloatBorder" },
-    { "🭾", "FloatBorder" },
-    { "▕", "FloatBorder" },
-    { "🭿", "FloatBorder" },
-    { "▁", "FloatBorder" },
-    { "🭼", "FloatBorder" },
-    { "▏", "FloatBorder" },
+    { "🭽", "NormalFloat" },
+    { "▔", "NormalFloat" },
+    { "🭾", "NormalFloat" },
+    { "▕", "NormalFloat" },
+    { "🭿", "NormalFloat" },
+    { "▁", "NormalFloat" },
+    { "🭼", "NormalFloat" },
+    { "▏", "NormalFloat" },
+    -- { "🭽", "FloatBorder" },
+    -- { "▔", "FloatBorder" },
+    -- { "🭾", "FloatBorder" },
+    -- { "▕", "FloatBorder" },
+    -- { "🭿", "FloatBorder" },
+    -- { "▁", "FloatBorder" },
+    -- { "🭼", "FloatBorder" },
+    -- { "▏", "FloatBorder" },
   }
+  -- end NOTE
 
   local handlers = {
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),

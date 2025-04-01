@@ -60,7 +60,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
 -- autocmd("TextYankPost", {
 --   group = augroup "yank",
 --   callback = function()
---     (vim.hl or vim.highlight).on_yank {
+--     vim.hl.on_yank {
 --       timeout = 40,
 --     }
 --   end,

@@ -6,8 +6,7 @@ vim.opt.relativenumber = true
 
 vim.g.have_nerd_font = true
 
--- TODO: disable once status line installed
-vim.opt.showmode = true
+vim.opt.showmode = false
 
 vim.opt.smartindent = true
 
@@ -40,12 +39,3 @@ vim.opt.confirm = true
 vim.opt.laststatus = 3
 
 vim.opt.completeopt = "menu,menuone,noselect"
-
-vim.opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
-}

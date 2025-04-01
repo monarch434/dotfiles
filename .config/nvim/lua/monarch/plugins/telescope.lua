@@ -14,6 +14,13 @@ return {
     require("telescope").load_extension "ui-select"
   end,
   opts = function()
+    -- NOTE: becuase 'AlexvZyl/nordic.nvim' has a darker FloatBorder
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "NormalFloat" })
+    vim.api.nvim_set_hl(0, "TelescopePromptBorder", { link = "NormalFloat" })
+    vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { link = "NormalFloat" })
+    vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { link = "NormalFloat" })
+    -- end NOTE
+
     return {
       defaults = {
         prompt_prefix = "󰭎  ",

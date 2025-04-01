@@ -13,16 +13,6 @@ return {
         return name == ".." or name == ".git"
       end,
     },
-    float = {
-      padding = 5,
-      max_width = 70,
-      max_height = 30,
-      border = "rounded",
-      win_options = {
-        winblend = 0,
-      },
-    },
-    cleanup_delay_ms = 500,
   },
   keys = {
     { "-", "<CMD>Oil<CR>", desc = "Open paren directory" },

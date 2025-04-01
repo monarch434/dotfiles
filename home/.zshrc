@@ -10,7 +10,10 @@ plugins=(
     aws
     kubectl
     macos
+    kube-ps1
 )
+
+RPROMPT='$(kube_ps1)'
 
 source $ZSH/oh-my-zsh.sh
 
@@ -49,6 +52,7 @@ gch () {
     git checkout "$(git branch --all | fzf | tr -d '[:space:]')"
 }
 
+# Set default Kubernetes editor
 export KUBE_EDITOR=nvim
 
 # terragrunt autocompletion
