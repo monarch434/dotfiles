@@ -39,3 +39,7 @@ vim.opt.confirm = true
 vim.opt.laststatus = 3
 
 vim.opt.completeopt = "menu,menuone,noselect"
+
+vim.opt.foldlevelstart = 20
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
