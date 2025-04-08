@@ -5,40 +5,46 @@ M.treesitter_ensure_installed = {
   "lua",
   "luadoc",
   "luap",
-  -- Golang
+  "vim",
+  "vimdoc",
+  -- golang
   "go",
   "gomod",
   "gowork",
   "gosum",
-  -- Git
+  -- git
   "git_config",
   "gitcommit",
   "git_rebase",
   "gitignore",
   "gitattributes",
+  -- web dev
+  "html",
+  "javascript",
+  "typescript",
+  "css",
+  "vue",
+  "jsdoc",
+  -- python
+  "rst",
+  "ninja",
+  "python",
+  -- docs
+  "json",
+  "json5",
+  "jsonc",
+  "toml",
+  "xml",
+  "yaml",
   --
   "bash",
   "c",
   "diff",
-  "html",
-  "javascript",
-  "jsdoc",
-  "json",
-  "jsonc",
   "markdown",
   "markdown_inline",
-  "python",
   "query",
   "regex",
-  "toml",
-  "typescript",
-  "vim",
-  "vimdoc",
-  "xml",
-  "yaml",
   "hcl",
-  "css",
-  "vue",
   "terraform",
   "bash",
   "sql",
@@ -54,15 +60,26 @@ M.tools_ensure_installed = {
   -- Lua
   "stylua",
   "shfmt",
-  --
+  -- yaml
   "gitlab_ci_ls",
   "yamlls",
+  -- web dev
+  "prettier",
+  "prettierd",
+  -- python
+  "black",
+  "ruff",
 }
 
 M.lsp_ensure_installed = {
   "gopls",
   "golangci_lint_ls",
   "lua_ls",
+  "ts_ls",
+  "vtsls",
+  "volar",
+  "pyright",
+  "jsonls",
 }
 
 M.icons = {

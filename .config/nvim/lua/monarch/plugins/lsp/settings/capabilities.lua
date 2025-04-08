@@ -18,6 +18,10 @@ local yamlls_capabilities = {
   },
 }
 
+local ruff_capabilities = {
+  hoverProvider = false,
+}
+
 M.get = function(server_name)
   local ok, blink = pcall(require, "blink.cmp")
   if not ok then
@@ -28,6 +32,10 @@ M.get = function(server_name)
 
   if server_name == "yamlls" then
     capabilities = vim.tbl_deep_extend("force", capabilities, yamlls_capabilities)
+  end
+
+  if server_name == "ruff" then
+    capabilities = vim.tbl_deep_extend("force", capabilities, ruff_capabilities)
   end
 
   return capabilities

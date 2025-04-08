@@ -9,8 +9,14 @@ return {
   ---@type conform.setupOpts
   opts = {
     formatters_by_ft = {
-      lua = { "stylua", "shfmt" },
+      lua = { "stylua" },
       go = { "goimports", "gofumpt" },
+      javascript = { "prettierd", "prettier", stop_after_first = true },
+      typescript = { "prettierd", "prettier", stop_after_first = true },
+      vue = { "prettierd", "prettier", stop_after_first = true },
+      html = { "prettierd", "prettier", stop_after_first = true },
+      python = { "black" },
+      bash = { "shfmt" },
     },
     notify_on_error = false,
     default_format_opts = {
