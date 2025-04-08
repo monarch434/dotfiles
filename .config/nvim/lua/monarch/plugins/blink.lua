@@ -9,6 +9,12 @@ return {
   opts = {
     signature = { enabled = true, window = { show_documentation = true, border = "rounded" } },
     keymap = { preset = "default" },
+    completion = {
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 200,
+      },
+    },
     appearance = {
       use_nvim_cmp_as_default = true,
       nerd_font_variant = "mono",
