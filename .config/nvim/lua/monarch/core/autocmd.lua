@@ -48,6 +48,14 @@ autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
+require("monarch.plugins.lsp.settings.on_attach").on_attach(function(_, buffer)
+  if vim.bo[buffer].filetype == "helm" then
+    vim.schedule(function()
+      vim.cmd "LspStop ++force yamlls"
+    end)
+  end
+end, "yamlls")
+
 -- autocmd({ "FileType" }, {
 --   group = augroup "close_diffview_",
 --   pattern = "Diffview*",

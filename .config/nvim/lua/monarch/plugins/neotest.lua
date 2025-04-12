@@ -23,6 +23,7 @@ return {
           "-count=1",
           "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
         },
+        dap_go_enabled = true, -- requires leoluz/nvim-dap-go
       }
       ---@diagnostic disable-next-line: missing-fields
       require("neotest").setup {

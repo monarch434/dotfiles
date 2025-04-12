@@ -36,6 +36,7 @@ M.treesitter_ensure_installed = {
   "toml",
   "xml",
   "yaml",
+  "helm",
   --
   "bash",
   "c",
@@ -57,6 +58,7 @@ M.tools_ensure_installed = {
   "gomodifytags",
   "impl",
   "gofumpt",
+  "delve",
   -- Lua
   "stylua",
   "shfmt",
@@ -76,10 +78,10 @@ M.lsp_ensure_installed = {
   "golangci_lint_ls",
   "lua_ls",
   "ts_ls",
-  "vtsls",
   "volar",
   "pyright",
   "jsonls",
+  "helm_ls",
 }
 
 M.icons = {
@@ -93,6 +95,13 @@ M.icons = {
     added = " ",
     modified = " ",
     removed = " ",
+  },
+  dap = {
+    Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
+    Breakpoint = " ",
+    BreakpointCondition = " ",
+    BreakpointRejected = { " ", "DiagnosticError" },
+    LogPoint = ".>",
   },
 }
 
