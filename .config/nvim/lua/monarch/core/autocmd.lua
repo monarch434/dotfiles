@@ -20,6 +20,7 @@ autocmd("FileType", {
     "notify",
     "qf",
     "Diffview*",
+    "dap-float",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
