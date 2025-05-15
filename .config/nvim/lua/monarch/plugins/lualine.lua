@@ -1,11 +1,21 @@
--- TODO: check out https://github.com/rebelot/heirline.nvim
-
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   opts = function()
     local icons = require("monarch.core.globals").icons
     local opts = {
+      winbar = {
+        lualine_c = {
+          {
+            function()
+              return require("nvim-navic").get_location()
+            end,
+            cond = function()
+              return require("nvim-navic").is_available()
+            end,
+          },
+        },
+      },
       sections = {
         lualine_a = { "mode" },
         lualine_b = {
@@ -38,7 +48,7 @@ return {
             },
           },
         },
-        lualine_c = { "filename" },
+        lualine_c = { { "filename", path = 1, newfile_status = true } }, -- TODO: Add better way to show filename or just go back to tmux
         lualine_x = { { "filetype", icon_only = true } },
         lualine_y = {
           { "progress", separator = " ", padding = { left = 1, right = 0 } },

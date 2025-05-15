@@ -4,7 +4,9 @@ return {
       workspace = {
         checkThirdParty = false,
       },
-
+      codeLens = {
+        enable = true,
+      },
       runtime = {
         version = "LuaJIT",
       },

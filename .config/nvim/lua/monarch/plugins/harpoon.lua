@@ -2,8 +2,14 @@ return {
   "ThePrimeagen/harpoon",
   branch = "harpoon2",
   dependencies = { "nvim-lua/plenary.nvim" },
-  config = function()
-    require("harpoon"):setup()
+  opts = {
+    settings = {
+      save_on_toggle = true,
+      sync_on_ui_close = true,
+    },
+  },
+  config = function(_, opts)
+    require("harpoon"):setup(opts)
   end,
   keys = {
     -- stylua: ignore start

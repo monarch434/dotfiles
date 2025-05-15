@@ -28,6 +28,7 @@ return {
         unusedwrite = true,
         useany = true,
       },
+      usePlaceholders = true,
       completeUnimported = true,
       staticcheck = true,
       directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },

@@ -1,10 +1,6 @@
-local ok, mason_registry = pcall(require, "mason-registry")
-if not ok then
-  print "mason_registry not able to load"
-  return
-end
-
-local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path() .. "/node_modules/@vue/language-server"
+-- Then find the Volar plugin path manually:
+local vue_ls_share = vim.fn.expand "$MASON/share/vue-language-server"
+local vue_plugin_path = vue_ls_share .. "/node_modules/@vue/language-server"
 
 return {
   init_options = {
@@ -14,20 +10,11 @@ return {
         name = "@vue/typescript-plugin",
 
         -- Location of the Vue language server module (path defined in step 1)
-        location = vue_language_server_path,
+        location = vue_plugin_path,
 
         -- Specify the languages the plugin applies to (in this case, Vue files)
         languages = { "vue" },
       },
     },
-  },
-
-  -- Specify the file types that will trigger the TypeScript language server
-  filetypes = {
-    "typescript", -- TypeScript files (.ts)
-    "javascript", -- JavaScript files (.js)
-    "javascriptreact", -- React files with JavaScript (.jsx)
-    "typescriptreact", -- React files with TypeScript (.tsx)
-    "vue", -- Vue.js single-file components (.vue)
   },
 }

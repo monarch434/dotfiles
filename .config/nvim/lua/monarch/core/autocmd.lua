@@ -49,7 +49,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
-require("monarch.plugins.lsp.settings.on_attach").on_attach(function(_, buffer)
+require("monarch.plugins.lsp.settings.on_attach").attach(function(_, buffer)
   if vim.bo[buffer].filetype == "helm" then
     vim.schedule(function()
       vim.cmd "LspStop ++force yamlls"

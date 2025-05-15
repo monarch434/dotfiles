@@ -9,7 +9,7 @@ return {
       { "leoluz/nvim-dap-go", opts = {} },
     },
     config = function()
-      vim.api.nvim_set_hl(0, "DapStoppedLine", { link = "CursorLineFold" })
+      vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "CursorLine" })
 
       for name, sign in pairs(monarch.icons.dap) do
         sign = type(sign) == "table" and sign or { sign }

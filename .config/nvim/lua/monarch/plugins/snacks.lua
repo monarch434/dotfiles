@@ -8,22 +8,32 @@ return {
     bigfile = { enabled = true },
     quickfile = { enabled = true },
     indent = { enabled = true },
-    picker = { enabled = true },
+    picker = {
+      enabled = true,
+      win = {
+        input = {
+          keys = {
+            ["<C-s>"] = { "edit_vsplit", mode = { "i", "n" } },
+            ["<C-h>"] = { "edit_split", mode = { "i", "n" } },
+          },
+        },
+      },
+    },
     lazygit = {
       enabled = true,
       theme = {
         -- NOTE: Added because of AlexvZyl/nordic.nvim theme, default couldn't be seen
-        inactiveBorderColor = { fg = "WinBar" },
+        -- inactiveBorderColor = { fg = "WinBar" },
       },
     },
     statuscolumn = { enabled = true },
   },
   keys = {
     -- stylua: ignore start
-    { "<leader>sf", function() Snacks.picker.smart { exclude = ignorePattern, hidden = true } end, desc = "Smart Find Files" },
+    -- { "<leader>sf", function() Snacks.picker.smart { exclude = ignorePattern, hidden = true } end, desc = "Smart Find Files" },
     { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
-    -- { "<leader>sf", function() Snacks.picker.files { exclude = ignorePattern } end, desc = "Pick files" },
-    { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
+    { "<leader>sf", function() Snacks.picker.files { exclude = ignorePattern, hidden = true } end, desc = "Pick files" },
+    { "<leader>sg", function() Snacks.picker.grep({ exclude = ignorePattern, hidden = true }) end, desc = "Grep" },
     { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
     { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
     { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
@@ -32,6 +42,7 @@ return {
     { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
     { "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
     { "<leader>ss", function() Snacks.picker.lsp_symbols { layout = { preset = "sidebar", preview = false } } end, desc = "LSP Symbols" },
+    { "<leader>st", function () Snacks.picker.todo_comments { exclude = ignorePattern } end, desc = "Search TODO" },
     -- stylua: ingore end
   },
 }
