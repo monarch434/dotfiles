@@ -21,7 +21,8 @@ table.insert(config.hyperlink_rules, {
 
 -- Set color_scheme
 -- config.color_scheme = "Nord (Gogh)"
-config.color_scheme = "Oceanic-Next"
+-- config.color_scheme = "Oceanic-Next"
+-- config.color_scheme = "Monokai Vivid"
 
 config.window_decorations = "RESIZE"
 config.window_close_confirmation = "AlwaysPrompt"
