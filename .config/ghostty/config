@@ -1,9 +1,9 @@
 shell-integration-features = no-cursor
 cursor-style-blink = false
 
-theme = tokyonight-storm
+theme = nightfox
 
-macos-titlebar-style = tabs
+macos-titlebar-style = hidden
 
 auto-update = check
 
@@ -14,6 +14,11 @@ window-padding-y = 0
 window-padding-balance = true
 window-height = 85
 window-width = 220
+
+quick-terminal-position = bottom
+quick-terminal-screen = main
+quick-terminal-animation-duration = 0
+keybind = global:cmd+shift+ctrl+t=toggle_quick_terminal
 
 font-size = 13.0
 
