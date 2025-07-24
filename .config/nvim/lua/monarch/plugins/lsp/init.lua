@@ -7,13 +7,13 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    tag = "v2.0.0",
+    tag = "v2.2.0",
     cmd = { "LspInfo", "LspInstall", "LspStart" },
     event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     dependencies = {
       { "williamboman/mason.nvim", tag = "v2.0.0", opts = {} },
       "saghen/blink.cmp",
-      { "j-hui/fidget.nvim", opts = {} },
+      -- { "j-hui/fidget.nvim", opts = {} },
       { "williamboman/mason-lspconfig.nvim", tag = "v2.0.0" },
     },
     config = function()
@@ -27,7 +27,7 @@ return {
       for _, server_name in ipairs(servers) do
         local opts = {
           capabilities = require("monarch.plugins.lsp.settings.capabilities").get(server_name),
-          handlers = require("monarch.plugins.lsp.settings.handlers").get(),
+          -- handlers = require("monarch.plugins.lsp.settings.handlers").get(),
           -- on_attach = require("monarch.plugins.lsp.settings.workaround").on_attach,
           on_attach = require("monarch.plugins.lsp.settings.on_attach").on_attach,
         }
@@ -36,9 +36,18 @@ return {
           opts = vim.tbl_deep_extend("force", opts, server_opts)
         end
 
-        require("lspconfig")[server_name].setup(opts)
+        vim.lsp.config(server_name, opts)
+        vim.lsp.enable(server_name)
       end
 
+
+      vim.filetype.add {
+        extension = {
+          jinja = "jinja",
+          jinja2 = "jinja",
+          j2 = "jinja",
+        },
+      }
       -- handlers = {
       --   function(server_name)
       --     local opts = {

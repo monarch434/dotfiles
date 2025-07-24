@@ -1,6 +1,5 @@
 -- Then find the Volar plugin path manually:
-local vue_ls_share = vim.fn.expand "$MASON/share/vue-language-server"
-local vue_plugin_path = vue_ls_share .. "/node_modules/@vue/language-server"
+local vue_language_server_path = vim.fn.expand "$MASON/packages" .. "/vue-language-server" .. "/node_modules/@vue/language-server"
 
 return {
   init_options = {
@@ -10,11 +9,13 @@ return {
         name = "@vue/typescript-plugin",
 
         -- Location of the Vue language server module (path defined in step 1)
-        location = vue_plugin_path,
+        location = vue_language_server_path,
 
         -- Specify the languages the plugin applies to (in this case, Vue files)
+
         languages = { "vue" },
       },
     },
   },
+  filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 }

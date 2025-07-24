@@ -5,8 +5,9 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master", -- TODO: Use main once it becomes the default branch
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      { "nvim-treesitter/nvim-treesitter-textobjects", branch = "master" }, -- TODO: Use main once it becomes the default branch
     },
     event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
     build = ":TSUpdate",

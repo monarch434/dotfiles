@@ -1,8 +1,10 @@
 return {
   "nvimtools/none-ls.nvim",
   event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+  dependencies = { "davidmh/cspell.nvim" },
   opts = function(_, opts)
     local nls = require "null-ls"
+    local cspell = require "cspell"
     opts.sources = vim.list_extend(opts.sources or {}, {
       -- Golang
       nls.builtins.code_actions.gomodifytags,
@@ -16,7 +18,14 @@ return {
       nls.builtins.formatting.prettier,
       nls.builtins.formatting.prettierd,
       -- Python
-      nls.builtins.formatting.black
+      nls.builtins.formatting.black,
+      -- spelling
+      -- cspell.diagnostics.with {
+      --   diagnostics_postprocess = function(diagnostic)
+      --     diagnostic.severity = vim.diagnostic.severity.HINT
+      --   end,
+      -- },
+      cspell.code_action,
     })
   end,
 }

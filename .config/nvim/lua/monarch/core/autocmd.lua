@@ -42,7 +42,7 @@ autocmd("FileType", {
 })
 
 autocmd({ "BufRead", "BufNewFile" }, {
-  group = augroup "gitl_yamlls",
+  group = augroup "gitlab_yamlls",
   pattern = "*.gitlab-ci*.{yml,yaml}",
   callback = function()
     vim.bo.filetype = "yaml.gitlab"
@@ -57,13 +57,47 @@ require("monarch.plugins.lsp.settings.on_attach").attach(function(_, buffer)
   end
 end, "yamlls")
 
--- autocmd({ "FileType" }, {
---   group = augroup "close_diffview_",
---   pattern = "Diffview*",
---   callback = function()
---     vim.api.nvim_buf_set_keymap(0, "n", "q", "<cmd>DiffviewClose<cr>", { noremap = true, silent = true })
---   end,
--- })
+autocmd("User", {
+  group = augroup "file_rename",
+  pattern = "OilActionsPost",
+  callback = function(event)
+    if event.data.actions.type == "move" then
+      Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
+    end
+  end,
+})
+
+autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+  group = augroup "lint",
+  callback = function()
+    require("lint").try_lint()
+    require("lint").try_lint "cspell"
+  end,
+})
+
+-- Rename tmux window based on open file
+if vim.env.TMUX ~= nil then
+  -- Define an autocommand for BufEnter and FocusGained events
+  autocmd({ "BufEnter", "FocusGained" }, {
+    pattern = "*",
+    group = augroup "tmux_window_rename",
+    callback = function()
+      local current_file = vim.fn.expand "%:t"
+      local tmux_command = string.format("tmux rename-window '%s'", current_file)
+      vim.fn.system(tmux_command)
+    end,
+  })
+
+  -- Define an autocommand for the VimLeave event
+  autocmd("VimLeave", {
+    pattern = "*",
+    group = augroup "tmux_window_rename_leave",
+    callback = function()
+      local shell = vim.env.SHELL or "sh"
+      vim.fn.system "tmux set-window-option automatic-rename on"
+    end,
+  })
+end
 
 -- decrease yank timout an highlight yanked text
 -- autocmd("TextYankPost", {

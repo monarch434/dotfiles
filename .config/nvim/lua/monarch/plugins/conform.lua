@@ -15,8 +15,17 @@ return {
       typescript = { "prettierd", "prettier", stop_after_first = true },
       vue = { "prettierd", "prettier", stop_after_first = true },
       html = { "prettierd", "prettier", stop_after_first = true },
-      python = { "black" },
+      python = { "ruff", "pylint", stop_after_first = true },
       bash = { "shfmt" },
+      sql = { "sqlfluff" },
+      mysql = { "sqlfluff" },
+      plsql = { "sqlfluff" },
+    },
+    formatters = {
+      sqlfluff = {
+        args = { "format", "--dialect=ansi", "-" },
+        require_cwd = false,
+      },
     },
     notify_on_error = false,
     default_format_opts = {

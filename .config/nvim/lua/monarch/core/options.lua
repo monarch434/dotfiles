@@ -39,7 +39,9 @@ vim.opt.guicursor = "a:block"
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "80"
+vim.opt.spelllang = { "en" }
+
+vim.opt.colorcolumn = "120"
 vim.opt.confirm = true
 
 vim.opt.laststatus = 3

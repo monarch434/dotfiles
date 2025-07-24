@@ -9,12 +9,24 @@ return {
   --     require("nordic").load()
   --   end,
   -- },
+
+  -- {
+  --   "EdenEast/nightfox.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = function()
+  --     vim.cmd "colorscheme nightfox"
+  --   end,
+  -- },
+
   {
-    "EdenEast/nightfox.nvim",
+    "bluz71/vim-moonfly-colors",
     lazy = false,
     priority = 1000,
-    opts = function()
-      vim.cmd "colorscheme nightfox"
+    config = function()
+      vim.cmd "colorscheme moonfly"
+    --   vim.o.background = "dark"
+    --   vim.api.nvim_set_hl(0, "FloatBorder", { link = "NormalFloat" })
     end,
   },
 }

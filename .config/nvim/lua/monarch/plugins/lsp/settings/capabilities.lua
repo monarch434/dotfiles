@@ -7,6 +7,12 @@ local default_capabilities = {
       willRename = true,
     },
   },
+  textDocument = {
+    foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
+    },
+  },
 }
 
 local yamlls_capabilities = {

@@ -29,6 +29,8 @@ M.treesitter_ensure_installed = {
   "rst",
   "ninja",
   "python",
+  "jinja",
+  "jinja_inline",
   -- docs
   "json",
   "json5",
@@ -37,7 +39,9 @@ M.treesitter_ensure_installed = {
   "xml",
   "yaml",
   "helm",
-  --
+  -- SQL (Database)
+  "sql",
+  -- Other
   "bash",
   "c",
   "diff",
@@ -48,7 +52,6 @@ M.treesitter_ensure_installed = {
   "hcl",
   "terraform",
   "bash",
-  "sql",
 }
 
 M.tools_ensure_installed = {
@@ -68,9 +71,19 @@ M.tools_ensure_installed = {
   -- web dev
   "prettier",
   "prettierd",
+  "eslint_d",
+  "eslint-lsp",
+  "vue_ls", -- 'volar' -> 'vue_ls'
   -- python
-  "black",
-  "ruff",
+  "ruff", -- formatting
+  "pylint", -- linting
+  "jinja_lsp",
+  -- sql
+  "sqlfluff",
+  -- spelling
+  "cspell",
+  -- terraform
+  "tflint",
 }
 
 M.lsp_ensure_installed = {
@@ -78,7 +91,6 @@ M.lsp_ensure_installed = {
   "golangci_lint_ls",
   "lua_ls",
   "ts_ls",
-  "volar",
   "pyright",
   "jsonls",
   "helm_ls",

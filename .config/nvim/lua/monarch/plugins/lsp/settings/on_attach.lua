@@ -19,7 +19,7 @@ function M.on_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
   end
 
-  if client.supports_method "textDocument/codeLens" then
+  if client.supports_method "textDocument/codeLens" and client.name ~= "lua_ls" then
     vim.lsp.codelens.refresh()
     -- NOTE: changed from 'CursorHold' too 'BufWritePost' because of constent flickering
     vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
