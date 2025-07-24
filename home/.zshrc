@@ -1,5 +1,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="half-life"
+# ZSH_THEME="rkj-repos"
+# ZSH_THEME="bira"
 
 plugins=(
     git
@@ -19,6 +21,9 @@ source $ZSH/oh-my-zsh.sh
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
+export COLIMA_HOME="$XDG_CONFIG_HOME/colima"
+export ANDROID_HOME="$HOME/ANDROID/sdk/cmdline-tools/bin"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
 # zsh-completion
 if type brew &>/dev/null; then
@@ -52,6 +57,21 @@ gch () {
     git checkout "$(git branch --all | fzf | tr -d '[:space:]')"
 }
 
+# decode JWT
+jwt-decode () {
+  local in=$1; if [ -z "$in" ]; then read in; fi
+  jq -R 'split(".") | .[1] | @base64d | fromjson' <<< "$in"
+}
+
+fzf-zoxide-widget() {
+    local dir
+    dir=$(zoxide query -l | fzf +m) && cd "$dir"
+    zle reset-prompt
+}
+
+zle -N fzf-zoxide-widget
+bindkey '\ez' fzf-zoxide-widget
+
 # Set default Kubernetes editor
 export KUBE_EDITOR=nvim
 
@@ -68,4 +88,5 @@ source <(stern --completion=zsh)
 eval "$(zoxide init --cmd cd zsh)"
 
 # Aliases
-alias ls=eza
+alias ls="eza -hal"
+alias lg="lazygit"
